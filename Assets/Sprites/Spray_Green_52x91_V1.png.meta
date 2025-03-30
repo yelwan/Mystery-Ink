@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 419c05ea956c26e4cb8397a8bf52eb42
+guid: 85ae96466a6da8b408459e22fc5c348d
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -2354075126360472802
-    second: DGD-03_0
+      213: 6097475169271303325
+    second: Spray_Green_52x91_V1_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -126,23 +126,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: DGD-03_0
+      name: Spray_Green_52x91_V1_0
       rect:
         serializedVersion: 2
-        x: 115
-        y: 75
-        width: 98
-        height: 256
-      alignment: 9
-      pivot: {x: 0.5000002, y: -0.0012820661}
+        x: 1269
+        y: 812
+        width: 220
+        height: 382
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: e1383be1525a45fd0800000000000000
-      internalID: -2354075126360472802
+      spriteID: d9c4e235c559e9450800000000000000
+      internalID: 6097475169271303325
       vertices: []
       indices: 
       edges: []
@@ -151,7 +151,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 638989b1ac3656446b7db3734100eda8
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -160,8 +160,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      DGD-03_0: -2354075126360472802
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
