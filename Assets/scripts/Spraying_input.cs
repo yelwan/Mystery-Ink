@@ -1,45 +1,84 @@
 using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
 
-public class Spraying_input : MonoBehaviour
+public class SprayController : MonoBehaviour
 {
-    private ParticleSystem spray;
-    public bool collected = false;
-    public CollectSpraycan spraycan;
-    public InputManager inputManager; // Reference to your InputManager script
+    [Header("Dependencies")]
+    [SerializeField] private CollectSpraycan _spraycan;
+    [SerializeField] private InputManager _inputManager;
+    [SerializeField] private MaskManager _maskManager;
+    [SerializeField] private ParticleSystem _sprayParticles;
+    [SerializeField] List<ParticleCollisionEvent> collisionEvents;
+    [Header("Settings")]
+    [SerializeField] private KeyCode _sprayKey = KeyCode.E;
 
-    void Start()
+ 
+    private bool _isSpraying = false;
+
+    private void Awake()
     {
-        spray = GetComponent<ParticleSystem>();
+        collisionEvents = new List<ParticleCollisionEvent>();
     }
 
-    void Update()
+    private void Update()
     {
-        collected = spraycan.collected;
+        if (!CanSpray()) return;
 
-        if (collected)
+        HandleSprayInput();
+    }
+
+    private bool CanSpray()
+    {
+        return _spraycan != null && _spraycan.collected;
+    }
+
+    private void HandleSprayInput()
+    {
+        if (Input.GetKey(_sprayKey))
         {
-            if (Input.GetKey(KeyCode.E))
-            {
-                if (!spray.isPlaying)
-                {
-                    spray.Play();
-                }
-
-                // Get move direction from InputManager
-                Vector2 moveDir = inputManager.moveDirection;
-
-                // Only update rotation if there's movement
-                if (moveDir != Vector2.zero)
-                {
-                    float angle = Mathf.Atan2(moveDir.y, moveDir.x) * Mathf.Rad2Deg;
-                    float sign = angle / -angle;
-                    spray.transform.rotation = Quaternion.Euler(-angle, 90, 90);
-                }
-            }
-            else
-            {
-                spray.Stop(true, ParticleSystemStopBehavior.StopEmitting);
-            }
+            StartSpraying();
+            UpdateSprayDirection();
+        }
+        else
+        {
+            StopSpraying();
         }
     }
+
+    private void StartSpraying()
+    {
+        if (_isSpraying) return;
+
+        _sprayParticles.Play();
+        _isSpraying = true;
+    }
+
+    private void StopSpraying()
+    {
+        if (!_isSpraying) return;
+
+        _sprayParticles.Stop(true, ParticleSystemStopBehavior.StopEmitting);
+        _isSpraying = false;
+    }
+
+    private void UpdateSprayDirection()
+    {
+        if (_inputManager.moveDirection == Vector2.zero) return;
+
+        Vector2 moveDir = _inputManager.moveDirection;
+        float angle = Mathf.Atan2(moveDir.y, moveDir.x) * Mathf.Rad2Deg;
+        _sprayParticles.transform.rotation = Quaternion.Euler(-angle, 90, 90);
+    }
+    
+
+    private void OnParticleCollision(GameObject other)
+    {
+       
+
+        if (null == other.GetComponent<MaskManager>() || other.GetComponent<SpriteRenderer>().color != _sprayParticles.main.startColor.color) return;
+
+        _maskManager.activateInteraction();
+    }
+
 }

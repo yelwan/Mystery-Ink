@@ -6,25 +6,24 @@ using UnityEngine.InputSystem;
 public class MaskManager : MonoBehaviour
 {
     [SerializeField] SpriteRenderer spriteRenderer;
-    [SerializeField] GameObject player;
+    public delegate void  ActivateInteraction();
+    public ActivateInteraction activateInteraction;
+   void Awake()
+    {
+        activateInteraction += Interact;
+    }
     void Start()
     {
         spriteRenderer.maskInteraction = SpriteMaskInteraction.VisibleInsideMask;
     }
 
-    void Update()
+    void Interact ()
     {
-      
-    
+        spriteRenderer.maskInteraction = SpriteMaskInteraction.VisibleOutsideMask;
     }
  
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject != player.gameObject) return;
-        spriteRenderer.maskInteraction = SpriteMaskInteraction.VisibleOutsideMask;
-
-    }
+  
     
     
 }

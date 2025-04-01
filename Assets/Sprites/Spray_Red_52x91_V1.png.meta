@@ -160,7 +160,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Spray_Red_52x91_V1_0: 2865030282735800116
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
