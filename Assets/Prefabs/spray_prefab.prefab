@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 391097138583409872}
   - component: {fileID: 6091195596207016995}
   m_Layer: 0
-  m_Name: Spray_Blue_52x91_V1_0
-  m_TagString: Untagged
+  m_Name: spray_prefab
+  m_TagString: spray
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -27,9 +27,9 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1701217143020360702}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.87, y: -2.88, z: 0}
-  m_LocalScale: {x: 1.1830393, y: 1.1830393, z: 1.1830393}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 14.69, y: -2.93, z: 0}
+  m_LocalScale: {x: 0.30467993, y: 0.30467993, z: 0.30467993}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 366521947192021428}
@@ -78,7 +78,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 6
+  m_SortingOrder: 7
   m_Sprite: {fileID: -693917174718900649, guid: 9e61bd75ac1dd1342ab7fa7234e08a35, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -102,10 +102,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e26bc169f43e9b44a4c5398301cad7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  color: Blue
   collectDistance: 3
   player: {fileID: 0}
-  collected: 1
+  collected: 0
+  colorName: blue
+  colorColor: {r: 0, g: 0, b: 1, a: 1}
+  amount: 5
 --- !u!61 &6091195596207016995
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -164,6 +166,8 @@ GameObject:
   - component: {fileID: 8637458392849109527}
   - component: {fileID: 1725137772278240914}
   - component: {fileID: 7912545669446244761}
+  - component: {fileID: 3871645108793618173}
+  - component: {fileID: 5419102825060899922}
   m_Layer: 0
   m_Name: ink-particle system
   m_TagString: Untagged
@@ -3790,10 +3794,10 @@ ParticleSystem:
         m_NumAlphaKeys: 2
     range: {x: 0, y: 1}
   CollisionModule:
-    enabled: 0
+    enabled: 1
     serializedVersion: 4
-    type: 0
-    collisionMode: 0
+    type: 1
+    collisionMode: 1
     colliderForce: 0
     multiplyColliderForceByParticleSize: 0
     multiplyColliderForceByParticleSpeed: 0
@@ -3967,16 +3971,16 @@ ParticleSystem:
     maxCollisionShapes: 256
     quality: 0
     voxelSize: 0.5
-    collisionMessages: 0
+    collisionMessages: 1
     collidesWithDynamic: 1
     interiorCollisions: 0
   TriggerModule:
-    enabled: 0
+    enabled: 1
     serializedVersion: 2
     inside: 1
     outside: 0
-    enter: 0
-    exit: 0
+    enter: 1
+    exit: 1
     colliderQueryMode: 0
     radiusScale: 1
     primitives: []
@@ -5016,6 +5020,81 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc68a42652df6d44fb3ffa1ec682377e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collected: 1
-  spraycan: {fileID: 391097138583409872}
-  inputManager: {fileID: 0}
+  _spraycan: {fileID: 391097138583409872}
+  _inputManager: {fileID: 0}
+  _maskManager: {fileID: 0}
+  _sprayParticles: {fileID: 8637458392849109527}
+  _sprayKey: 101
+--- !u!61 &3871645108793618173
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3127624203360442393}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: -0.00000023841858, y: 0.000000007450581}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Size: {x: 0.0001, y: 0.0001}
+  m_EdgeRadius: 0
+--- !u!50 &5419102825060899922
+Rigidbody2D:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3127624203360442393}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0

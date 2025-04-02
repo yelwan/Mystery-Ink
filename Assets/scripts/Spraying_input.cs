@@ -74,10 +74,7 @@ public class SprayController : MonoBehaviour
 
     private void OnParticleCollision(GameObject other)
     {
-       
-
         if (null == other.GetComponent<MaskManager>() || other.GetComponent<SpriteRenderer>().color != _sprayParticles.main.startColor.color) return;
-
         _maskManager.activateInteraction();
     }
 
