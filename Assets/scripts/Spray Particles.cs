@@ -7,11 +7,7 @@ public class SprayParticles : MonoBehaviour
     [SerializeField] GameObject splat;
     [SerializeField] GameObject player;
     private List<ParticleCollisionEvent> collisionEvents = new List<ParticleCollisionEvent> ();
-    public Vector2 hit;
-    void Start()
-    {
-        hit = Vector2.zero;
-    }
+  
     void OnParticleCollision(GameObject other)
     {
         if (other == player) return;
