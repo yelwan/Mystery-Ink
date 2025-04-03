@@ -1115,6 +1115,7 @@ GameObject:
   - component: {fileID: 825046690}
   - component: {fileID: 825046689}
   - component: {fileID: 825046691}
+  - component: {fileID: 825046692}
   m_Layer: 0
   m_Name: open_doorway
   m_TagString: Untagged
@@ -1186,8 +1187,8 @@ Transform:
   m_GameObject: {fileID: 825046688}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 15.34, y: 13.98, z: 0}
-  m_LocalScale: {x: 2.7863038, y: 4.517204, z: 0.85858}
+  m_LocalPosition: {x: 15.34, y: 12.2297, z: 0}
+  m_LocalScale: {x: 2.7863038, y: 4.1895423, z: 0.85858}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -1226,7 +1227,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: -0.20219453}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -1236,8 +1237,20 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1, y: 0.5956109}
   m_EdgeRadius: 0
+--- !u!114 &825046692
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 825046688}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b4e28cdf9da3a54d877076fc8d39931, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1271735186
 GameObject:
   m_ObjectHideFlags: 0
@@ -2452,8 +2465,8 @@ Transform:
   m_GameObject: {fileID: 1944622398}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.4, y: 3.09, z: 0}
-  m_LocalScale: {x: 36.208645, y: 18.484364, z: 28.983887}
+  m_LocalPosition: {x: 3.4, y: 2.0448, z: 0}
+  m_LocalScale: {x: 36.208645, y: 16.393782, z: 28.983887}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
