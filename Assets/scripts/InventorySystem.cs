@@ -1,11 +1,10 @@
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class InventorySystem : MonoBehaviour
 {
-    public List<GameObject> collectedSprayCans = new List<GameObject>(); // Stores collected spray cans
-    private int equippedIndex = -1; // Tracks which spray can is equipped (-1 means none)
+    public List<GameObject> collectedSprayCans = new List<GameObject>();
+    private int equippedIndex = -1; 
 
     void Update()
     {
@@ -17,38 +16,37 @@ public class InventorySystem : MonoBehaviour
 
     public void CollectSprayCan(CollectSpraycan sprayCan)
     {
-        if (!sprayCan.collected)
+        if (!collectedSprayCans.Contains(sprayCan.gameObject))
         {
-            sprayCan.collected = true;
             collectedSprayCans.Add(sprayCan.gameObject);
+            sprayCan.collected = true; 
 
-            // Auto-equip the first collected spray can
             if (equippedIndex == -1)
             {
                 EquipSprayCan(0);
-                sprayCan.gameObject.SetActive(true);
-                sprayCan.isEquipped = true;
+            }
+            else
+            {
+                sprayCan.gameObject.SetActive(false);
             }
         }
     }
 
     private void CycleSprayCan()
     {
-        if (collectedSprayCans.Count == 0) return; // No cans collected
+        if (collectedSprayCans.Count == 0) return;
 
-        equippedIndex = (equippedIndex + 1) % collectedSprayCans.Count; // Loop through cans
+        equippedIndex = (equippedIndex + 1) % collectedSprayCans.Count;
         EquipSprayCan(equippedIndex);
     }
 
     private void EquipSprayCan(int index)
     {
         equippedIndex = index;
-        Debug.Log("Equipped Spray Can: " + collectedSprayCans[equippedIndex]);
-      
-        for (int i = 0; i < collectedSprayCans.ToArray().Length; i++) {
-            collectedSprayCans[i].SetActive(false);
-        }
 
-        collectedSprayCans[equippedIndex].SetActive(true);
+        for (int i = 0; i < collectedSprayCans.Count; i++)
+        {
+            collectedSprayCans[i].SetActive(i == equippedIndex);
+        }
     }
 }
