@@ -70,11 +70,18 @@ public class SprayController : MonoBehaviour
         float angle = Mathf.Atan2(moveDir.y, moveDir.x) * Mathf.Rad2Deg;
         _sprayParticles.transform.rotation = Quaternion.Euler(-angle, 90, 90);
     }
-    
-
     private void OnParticleCollision(GameObject other)
     {
-        if (null == other.GetComponent<MaskManager>() || other.GetComponent<SpriteRenderer>().color != _sprayParticles.main.startColor.color) return;
+        MaskManager maskManager = other.GetComponent<MaskManager>();
+        SpriteRenderer spriteRenderer = other.GetComponent<SpriteRenderer>();
+
+        if (maskManager == null || spriteRenderer == null) return;
+
+        Color sprayColor = _sprayParticles.main.startColor.mode == ParticleSystemGradientMode.Color
+                           ? _sprayParticles.main.startColor.color
+                           : Color.white;
+
+        if (spriteRenderer.color == sprayColor) return;
         _maskManager.activateInteraction();
     }
 

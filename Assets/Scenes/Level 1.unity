@@ -1103,7 +1103,6 @@ MonoBehaviour:
   _sprayParticles: {fileID: 774311341}
   splat: {fileID: 2273730063451063855, guid: 1960968e981e51640a5fd93b9c5b87ee, type: 3}
   player: {fileID: 1408952892}
-  hit: {x: 0, y: 0}
 --- !u!1 &825046688
 GameObject:
   m_ObjectHideFlags: 0
@@ -1316,8 +1315,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 810960627553047272, guid: a573fad2d3590894f97d06df983a8120, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Sprite: {fileID: -3033343070696750966, guid: 23c25492a26466d4997e477886e40d06, type: 3}
+  m_Color: {r: 0, g: 0.33491373, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -1539,6 +1538,14 @@ PrefabInstance:
     - target: {fileID: 8637458392849109527, guid: 062f00acf81d98b458d30dadf85ddc0f, type: 3}
       propertyPath: SubModule.enabled
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8637458392849109527, guid: 062f00acf81d98b458d30dadf85ddc0f, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.g
+      value: 0.33333334
+      objectReference: {fileID: 0}
+    - target: {fileID: 8637458392849109527, guid: 062f00acf81d98b458d30dadf85ddc0f, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.r
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8637458392849109527, guid: 062f00acf81d98b458d30dadf85ddc0f, type: 3}
       propertyPath: SubModule.subEmitters.Array.data[0].emitter
@@ -2397,7 +2404,6 @@ MonoBehaviour:
   _sprayParticles: {fileID: 1904912061}
   splat: {fileID: 2273730063451063855, guid: 1960968e981e51640a5fd93b9c5b87ee, type: 3}
   player: {fileID: 1408952892}
-  hit: {x: 0, y: 0}
 --- !u!1 &1944622398
 GameObject:
   m_ObjectHideFlags: 0
