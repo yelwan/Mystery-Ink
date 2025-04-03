@@ -34,12 +34,11 @@ public class PoolingSystem : MonoBehaviour
 
     public GameObject CreateProjectile(Vector2 hit)
     {
-        Vector2 spawnPosition = hit; 
         GameObject projectile;
 
         if (projectilePool.Count == 0)
         {
-            projectile = Instantiate(projectilePrefab, spawnPosition, Quaternion.identity);
+            projectile = Instantiate(projectilePrefab, hit, Quaternion.identity);
         }
         else
         {
@@ -47,7 +46,7 @@ public class PoolingSystem : MonoBehaviour
         }
 
         activeProjectiles.Add(projectile);
-        projectile.transform.position = spawnPosition; 
+        projectile.transform.position = hit; 
         projectile.SetActive(true);
 
         if (activeProjectiles.Count > 10)
