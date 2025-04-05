@@ -5,18 +5,18 @@ using UnityEngine.InputSystem;
 
 public class InputManager : MonoBehaviour
 {
-    public InputAction MoveAction;
-    public InputAction WASD;
+    [SerializeField] InputAction MoveAction;
+    [SerializeField] InputAction WASD;
     Vector2 move2;
     Vector2 move;
 
-    public Rigidbody2D rigidbody2d;
-    public float speed = 3.0f;
+    [SerializeField] Rigidbody2D rigidbody2d;
+     float speed = 5.0f;
 
     public Vector2 moveDirection = new Vector2(1, 0);
 
-    public Vector2 initialPosition;
-    public Vector2 finalPosition;
+     Vector2 initialPosition;
+     Vector2 finalPosition;
 
 
     void Start()

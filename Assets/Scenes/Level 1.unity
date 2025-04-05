@@ -1100,6 +1100,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0e1621c715295246b7905dad0a682ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _poolingSystem: {fileID: 740673665}
   _sprayParticles: {fileID: 774311341}
   splat: {fileID: 2273730063451063855, guid: 1960968e981e51640a5fd93b9c5b87ee, type: 3}
   player: {fileID: 1408952892}
@@ -1356,7 +1357,6 @@ MonoBehaviour:
   spriteRenderer: {fileID: 1271735187}
   spriteRenderer2: {fileID: 825046689}
   color: blue
-  can: {fileID: 1693321404}
   door: {fileID: 1271735193}
 --- !u!61 &1271735191
 BoxCollider2D:
@@ -1808,10 +1808,7 @@ MonoBehaviour:
       m_Flags: 8
     m_Flags: 0
   rigidbody2d: {fileID: 1408952899}
-  speed: 5.5
   moveDirection: {x: 1, y: 0}
-  initialPosition: {x: 0, y: 0}
-  finalPosition: {x: 0, y: 0}
 --- !u!50 &1408952899
 Rigidbody2D:
   serializedVersion: 5
@@ -1986,17 +1983,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &1693321404 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 391097138583409872, guid: 062f00acf81d98b458d30dadf85ddc0f, type: 3}
-  m_PrefabInstance: {fileID: 1356327238}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9e26bc169f43e9b44a4c5398301cad7d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1722397364
 GameObject:
   m_ObjectHideFlags: 0
@@ -2281,7 +2267,6 @@ MonoBehaviour:
   spriteRenderer: {fileID: 1873638519}
   spriteRenderer2: {fileID: 825046689}
   color: blue
-  can: {fileID: 1693321404}
   door: {fileID: 1271735193}
 --- !u!1001 &1877942318
 PrefabInstance:
@@ -2371,6 +2356,18 @@ PrefabInstance:
       propertyPath: _inputManager
       value: 
       objectReference: {fileID: 1408952897}
+    - target: {fileID: 8637458392849109527, guid: 062f00acf81d98b458d30dadf85ddc0f, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8637458392849109527, guid: 062f00acf81d98b458d30dadf85ddc0f, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8637458392849109527, guid: 062f00acf81d98b458d30dadf85ddc0f, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.r
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2401,6 +2398,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0e1621c715295246b7905dad0a682ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _poolingSystem: {fileID: 740673665}
   _sprayParticles: {fileID: 1904912061}
   splat: {fileID: 2273730063451063855, guid: 1960968e981e51640a5fd93b9c5b87ee, type: 3}
   player: {fileID: 1408952892}

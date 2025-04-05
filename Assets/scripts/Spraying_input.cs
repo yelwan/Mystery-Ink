@@ -5,13 +5,13 @@ using System.Collections.Generic;
 public class SprayController : MonoBehaviour
 {
     [Header("Dependencies")]
-    [SerializeField] private CollectSpraycan _spraycan;
-    [SerializeField] private InputManager _inputManager;
-    [SerializeField] private MaskManager _maskManager;
-    [SerializeField] private ParticleSystem _sprayParticles;
+    [SerializeField]  CollectSpraycan _spraycan;
+    [SerializeField]  InputManager _inputManager;
+    [SerializeField]  MaskManager _maskManager;
+    [SerializeField]  ParticleSystem _sprayParticles;
     [SerializeField] List<ParticleCollisionEvent> collisionEvents;
     [Header("Settings")]
-    [SerializeField] private KeyCode _sprayKey = KeyCode.E;
+    [SerializeField]  KeyCode _sprayKey = KeyCode.E;
 
  
     private bool _isSpraying = false;
@@ -72,16 +72,8 @@ public class SprayController : MonoBehaviour
     }
     private void OnParticleCollision(GameObject other)
     {
-        MaskManager maskManager = other.GetComponent<MaskManager>();
-        SpriteRenderer spriteRenderer = other.GetComponent<SpriteRenderer>();
+        if (null == other.GetComponent<MaskManager>() || other.GetComponent<SpriteRenderer>().color != _sprayParticles.main.startColor.color) return;
 
-        if (maskManager == null || spriteRenderer == null) return;
-
-        Color sprayColor = _sprayParticles.main.startColor.mode == ParticleSystemGradientMode.Color
-                           ? _sprayParticles.main.startColor.color
-                           : Color.white;
-
-        if (spriteRenderer.color == sprayColor) return;
         _maskManager.activateInteraction();
     }
 

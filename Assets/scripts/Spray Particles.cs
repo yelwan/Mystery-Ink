@@ -3,7 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 public class SprayParticles : MonoBehaviour
 {
-    public ParticleSystem _sprayParticles;
+    [SerializeField] PoolingSystem _poolingSystem;
+    [SerializeField] ParticleSystem _sprayParticles;
     [SerializeField] GameObject splat;
     [SerializeField] GameObject player;
     private List<ParticleCollisionEvent> collisionEvents = new List<ParticleCollisionEvent> ();
@@ -15,7 +16,7 @@ public class SprayParticles : MonoBehaviour
         for (int i = 0; i < numCollisionEvents; i++)
         {
             Vector2 hit = collisionEvents[i].intersection;
-            PoolingSystem.instance.CreateProjectile(hit);
+            _poolingSystem.CreatedProjectilePublic(hit);
         }
     }
 

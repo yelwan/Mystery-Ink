@@ -11,8 +11,6 @@ public class MaskManager : MonoBehaviour
     public delegate void  ActivateInteraction();
     public ActivateInteraction activateInteraction;
 
-    public string color = "blue";
-    public CollectSpraycan can;
     public moveDoor door;
    void Awake()
     {
@@ -26,12 +24,11 @@ public class MaskManager : MonoBehaviour
 
     void Interact()
     {
-        if (can.colorName == color)
-        {
+   
             spriteRenderer.maskInteraction = SpriteMaskInteraction.VisibleOutsideMask;
             spriteRenderer2.maskInteraction = SpriteMaskInteraction.VisibleOutsideMask;
             StartCoroutine(DelayedOpenDoor());
-        }
+        
     }
 
     private IEnumerator DelayedOpenDoor()

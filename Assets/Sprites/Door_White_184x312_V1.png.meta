@@ -160,7 +160,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Door_White_184x312_V1_0: -3033343070696750966
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

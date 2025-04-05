@@ -22,7 +22,10 @@ public class PoolingSystem : MonoBehaviour
             CreatePooledProjectile(Vector2.zero);
         }
     }
-
+    public void CreatedProjectilePublic(Vector2 hit)
+    {
+        CreateProjectile(hit);
+    }
     void CreatePooledProjectile(Vector2 hit)
     {
         GameObject projectile = Instantiate(projectilePrefab, hit, Quaternion.identity);
@@ -32,7 +35,7 @@ public class PoolingSystem : MonoBehaviour
         projectile.transform.SetParent(projectileParent);
     }
 
-    public GameObject CreateProjectile(Vector2 hit)
+     GameObject CreateProjectile(Vector2 hit)
     {
         GameObject projectile;
 
@@ -57,7 +60,7 @@ public class PoolingSystem : MonoBehaviour
         return projectile;
     }
 
-    public void ReturnToPool(GameObject _projectile)
+     void ReturnToPool(GameObject _projectile)
     {
         if (!activeProjectiles.Remove(_projectile)) return;
 
