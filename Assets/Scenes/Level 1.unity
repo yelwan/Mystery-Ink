@@ -1317,7 +1317,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: -3033343070696750966, guid: 23c25492a26466d4997e477886e40d06, type: 3}
-  m_Color: {r: 0, g: 0.33491373, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -1356,7 +1356,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spriteRenderer: {fileID: 1271735187}
   spriteRenderer2: {fileID: 825046689}
-  color: blue
   door: {fileID: 1271735193}
 --- !u!61 &1271735191
 BoxCollider2D:
@@ -1540,12 +1539,16 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8637458392849109527, guid: 062f00acf81d98b458d30dadf85ddc0f, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8637458392849109527, guid: 062f00acf81d98b458d30dadf85ddc0f, type: 3}
       propertyPath: InitialModule.startColor.maxColor.g
-      value: 0.33333334
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8637458392849109527, guid: 062f00acf81d98b458d30dadf85ddc0f, type: 3}
       propertyPath: InitialModule.startColor.maxColor.r
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8637458392849109527, guid: 062f00acf81d98b458d30dadf85ddc0f, type: 3}
       propertyPath: SubModule.subEmitters.Array.data[0].emitter
@@ -1808,7 +1811,6 @@ MonoBehaviour:
       m_Flags: 8
     m_Flags: 0
   rigidbody2d: {fileID: 1408952899}
-  moveDirection: {x: 1, y: 0}
 --- !u!50 &1408952899
 Rigidbody2D:
   serializedVersion: 5
@@ -2266,7 +2268,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spriteRenderer: {fileID: 1873638519}
   spriteRenderer2: {fileID: 825046689}
-  color: blue
   door: {fileID: 1271735193}
 --- !u!1001 &1877942318
 PrefabInstance:

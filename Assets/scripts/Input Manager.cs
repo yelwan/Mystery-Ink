@@ -13,7 +13,7 @@ public class InputManager : MonoBehaviour
     [SerializeField] Rigidbody2D rigidbody2d;
      float speed = 5.0f;
 
-    public Vector2 moveDirection = new Vector2(1, 0);
+    private Vector2 moveDirection = new Vector2(1, 0);
 
      Vector2 initialPosition;
      Vector2 finalPosition;
@@ -48,5 +48,6 @@ public class InputManager : MonoBehaviour
         rigidbody2d.MovePosition(position);
     }
 
+   public Vector2 GetMoveDirection() => moveDirection;
 
 }

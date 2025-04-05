@@ -64,9 +64,9 @@ public class SprayController : MonoBehaviour
 
     private void UpdateSprayDirection()
     {
-        if (_inputManager.moveDirection == Vector2.zero) return;
+        if (_inputManager.GetMoveDirection() == Vector2.zero) return;
 
-        Vector2 moveDir = _inputManager.moveDirection;
+        Vector2 moveDir = _inputManager.GetMoveDirection();
         float angle = Mathf.Atan2(moveDir.y, moveDir.x) * Mathf.Rad2Deg;
         _sprayParticles.transform.rotation = Quaternion.Euler(-angle, 90, 90);
     }
