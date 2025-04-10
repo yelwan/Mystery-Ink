@@ -4,14 +4,13 @@ using UnityEngine;
 
 public class PoolingSystem : MonoBehaviour
 {
-    public static PoolingSystem instance;
     List<GameObject> activeProjectiles;
     Queue<GameObject> projectilePool;
     [SerializeField] Transform projectileParent;
     [SerializeField] GameObject projectilePrefab;
     [SerializeField] SprayParticles sprayParticles; 
 
-    private void Awake() => instance = this;
+
 
     void Start()
     {

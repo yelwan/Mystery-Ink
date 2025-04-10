@@ -18,15 +18,15 @@ public class MaskManager : MonoBehaviour
     }
     void Start()
     {
-        spriteRenderer.maskInteraction = SpriteMaskInteraction.VisibleInsideMask;
-        spriteRenderer2.maskInteraction = SpriteMaskInteraction.VisibleInsideMask;
+        spriteRenderer.enabled = false;
+        spriteRenderer2.enabled = false;
     }
 
     void Interact()
     {
    
-            spriteRenderer.maskInteraction = SpriteMaskInteraction.VisibleOutsideMask;
-            spriteRenderer2.maskInteraction = SpriteMaskInteraction.VisibleOutsideMask;
+            spriteRenderer.enabled = true;
+            spriteRenderer2.enabled = true;
             StartCoroutine(DelayedOpenDoor());
         
     }

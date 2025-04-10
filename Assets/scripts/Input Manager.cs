@@ -6,48 +6,26 @@ using UnityEngine.InputSystem;
 public class InputManager : MonoBehaviour
 {
     [SerializeField] InputAction MoveAction;
-    [SerializeField] InputAction WASD;
-    Vector2 move2;
+    [SerializeField] InputAction E;
     Vector2 move;
-
-    [SerializeField] Rigidbody2D rigidbody2d;
-     float speed = 5.0f;
-
-    private Vector2 moveDirection = new Vector2(1, 0);
-
-     Vector2 initialPosition;
-     Vector2 finalPosition;
-
+    Vector2 initialPosition;
+    Vector2 finalPosition;
+    float ePressed = 0.0f;
 
     void Start()
     {
+        E.Enable();
         MoveAction.Enable();
-        WASD.Enable();
     }
     void Update()
-    {
+    { 
         move = MoveAction.ReadValue<Vector2>();
-        move2 = WASD.ReadValue<Vector2>();
-
-        if (!Mathf.Approximately(move.x, 0.0f) || !Mathf.Approximately(move.y, 0.0f))
-        {
-            moveDirection.Set(move.x, move.y);
-            moveDirection.Normalize();
-        }
-        if (!Mathf.Approximately(move2.x, 0.0f) || !Mathf.Approximately(move2.y, 0.0f))
-        {
-            moveDirection.Set(move2.x, move2.y);
-            moveDirection.Normalize();
-            move = move2;
-        }
-
+        ePressed = E.ReadValue<float>();
     }
-    void FixedUpdate()
-    {
-        Vector2 position = (Vector2)rigidbody2d.position + move * speed * Time.deltaTime;
-        rigidbody2d.MovePosition(position);
-    }
-
-   public Vector2 GetMoveDirection() => moveDirection;
-
+    
+    public Vector2 GetMove() => move;
+    public void SetMove(Vector2 _move) {
+        move = _move;
+     }
+    public bool GetEPressed() => ePressed != 0.0f;
 }
