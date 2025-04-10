@@ -6,8 +6,7 @@ using UnityEngine.InputSystem;
 public class MaskManager : MonoBehaviour
 {
     [SerializeField] SpriteRenderer spriteRenderer;
-    [SerializeField] SpriteRenderer spriteRenderer2;
-
+    [SerializeField] SpriteRenderer doorWay;
     public delegate void  ActivateInteraction();
     public ActivateInteraction activateInteraction;
 
@@ -19,14 +18,14 @@ public class MaskManager : MonoBehaviour
     void Start()
     {
         spriteRenderer.enabled = false;
-        spriteRenderer2.enabled = false;
+        doorWay.enabled = false;
     }
 
     void Interact()
     {
    
             spriteRenderer.enabled = true;
-            spriteRenderer2.enabled = true;
+            doorWay.enabled = true;
             StartCoroutine(DelayedOpenDoor());
         
     }
@@ -34,6 +33,6 @@ public class MaskManager : MonoBehaviour
     private IEnumerator DelayedOpenDoor()
     {
         yield return new WaitForSeconds(2f); // Wait for 2 seconds
-        door.OpenDoor();
+        door?.OpenDoor();
     }
 }
