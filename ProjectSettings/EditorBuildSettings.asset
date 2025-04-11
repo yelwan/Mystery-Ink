@@ -12,6 +12,12 @@ EditorBuildSettings:
     path: Assets/Scenes/Level 1.unity
     guid: 8c9cfa26abfee488c85f1582747f6a02
   - enabled: 1
+    path: Assets/Scenes/EndScene.unity
+    guid: fc8c2ecda3fdd054284d52ca0be1235a
+  - enabled: 1
+    path: Assets/Scenes/LoseEndScene.unity
+    guid: f939d917b0f55da4894adc1a26a580a6
+  - enabled: 0
     path: Assets/Scenes/EndMenu.unity
     guid: 516227f3069ba1140bf9abfc55017344
   m_configObjects:

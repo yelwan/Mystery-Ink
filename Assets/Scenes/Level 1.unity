@@ -296,7 +296,7 @@ MonoBehaviour:
     CustomLookAtTarget: 0
   Lens:
     FieldOfView: 34
-    OrthographicSize: 4.07
+    OrthographicSize: 5.05
     NearClipPlane: 0.3
     FarClipPlane: 1000
     Dutch: 0
@@ -755,7 +755,7 @@ Camera:
   far clip plane: 1000
   field of view: 34
   orthographic: 1
-  orthographic size: 9.9
+  orthographic size: 12.71
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -780,7 +780,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.01, y: -1.41, z: -10}
+  m_LocalPosition: {x: 3.42, y: 3.09, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1534,12 +1534,12 @@ MonoBehaviour:
   m_StreamingVersion: 20241001
   m_LegacyPriority: 0
   Target:
-    TrackingTarget: {fileID: 1408952896}
+    TrackingTarget: {fileID: 0}
     LookAtTarget: {fileID: 0}
     CustomLookAtTarget: 0
   Lens:
     FieldOfView: 34
-    OrthographicSize: 9.9
+    OrthographicSize: 12.71
     NearClipPlane: 0.3
     FarClipPlane: 1000
     Dutch: 0
@@ -1566,8 +1566,8 @@ Transform:
   m_GameObject: {fileID: 1397864450}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.01, y: -1.41, z: -10}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 3.42, y: 3.09, z: -10}
+  m_LocalScale: {x: 1.112, y: 1.112, z: 1.112}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -1626,7 +1626,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: 0.9610307}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -1636,7 +1636,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 7.691461, y: 13.02}
+  m_Size: {x: 7.691461, y: 8.535196}
   m_EdgeRadius: 0
 --- !u!50 &1407474372
 Rigidbody2D:
@@ -1708,9 +1708,9 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 1
   m_Sprite: {fileID: 810960627553047272, guid: a573fad2d3590894f97d06df983a8120, type: 3}
-  m_Color: {r: 0.37370074, g: 0.33388218, b: 0.38679248, a: 1}
+  m_Color: {r: 0.16352195, g: 0.16352195, b: 0.16352195, a: 0.8784314}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -1744,7 +1744,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1407474370}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 82daa0bdeeedd8742ac0c7750e4bd6fa, type: 3}
+  m_Script: {fileID: 11500000, guid: 423127635422ce3478c043008abef88d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1408952893}
@@ -2192,6 +2192,51 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1659975838
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1659975839}
+  - component: {fileID: 1659975840}
+  m_Layer: 0
+  m_Name: Game Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1659975839
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1659975838}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.7811509, y: 2.4734452, z: -0.04470101}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1659975840
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1659975838}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 976ec8a7007d25045b352105419be5e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Timer: 60
 --- !u!1 &1722397364
 GameObject:
   m_ObjectHideFlags: 0
@@ -2568,3 +2613,4 @@ SceneRoots:
   - {fileID: 740673666}
   - {fileID: 1397864455}
   - {fileID: 172293545}
+  - {fileID: 1659975839}
