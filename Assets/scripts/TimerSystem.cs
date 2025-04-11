@@ -12,7 +12,6 @@ public class TimerSystem : MonoBehaviour
     private Label countdownLabel;
     private VisualElement labelElement;
 
-
     private void Awake()
     {
         Timer = Manager.Timer;
@@ -59,5 +58,4 @@ public class TimerSystem : MonoBehaviour
         }
         countdownLabel.text = "Time's up!";
     }
-
 }
