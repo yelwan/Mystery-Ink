@@ -24,8 +24,10 @@ public class SprayController : MonoBehaviour
     [SerializeField] List<ParticleCollisionEvent> collisionEvents;
     [Header("Settings")]
 
+    private float sprayTimeAccumulator = 0f;
+    private const float timePerUnit = 3f; // 3 seconds of spray = 1 unit
 
- 
+
     private bool _isSpraying = false;
 
     private void Awake()
@@ -38,7 +40,32 @@ public class SprayController : MonoBehaviour
         if (!CanSpray()) return;
 
         HandleSprayInput();
+
+        if (_isSpraying)
+        {
+            // Only accumulate if spray amount > 0
+            if (_spraycan.amount > 0)
+            {
+                sprayTimeAccumulator += Time.deltaTime;
+
+                if (sprayTimeAccumulator >= timePerUnit)
+                {
+                    sprayTimeAccumulator -= timePerUnit;
+                    _spraycan.amount--;
+                    Debug.Log("Amount is " + _spraycan.amount);
+                    if (_spraycan.amount <= 0)
+                    {
+                        StopSpraying();
+                    }
+                }
+            }
+            else
+            {
+                StopSpraying();
+            }
+        }
     }
+
 
     private bool CanSpray()
     {
@@ -73,6 +100,7 @@ public class SprayController : MonoBehaviour
         _sprayParticles.Stop(true, ParticleSystemStopBehavior.StopEmitting);
         _isSpraying = false;
     }
+
 
     private void UpdateSprayDirection()
     {

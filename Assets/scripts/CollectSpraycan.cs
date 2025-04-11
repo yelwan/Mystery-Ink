@@ -23,7 +23,6 @@ public class CollectSpraycan : MonoBehaviour
     {
         Can = GetComponent<BoxCollider2D>();
 
-        // Find the player's InventorySystem
         inventorySystem = player.GetComponent<InventorySystem>();
     }
 
@@ -52,6 +51,5 @@ public class CollectSpraycan : MonoBehaviour
         {
             inventorySystem.CollectSprayCan(this); // Add to inventory
         }
-
     }
 }
