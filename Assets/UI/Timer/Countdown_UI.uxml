@@ -1,5 +1,5 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
     <ui:VisualElement style="flex-grow: 1;">
-        <ui:Label name="Countdown" style="width: 138px; -unity-text-align: middle-center; font-size: 30px; color: rgb(255, 255, 255);" />
+        <ui:Label name="Countdown" style="width: 194px; -unity-text-align: middle-center; font-size: 40px; color: rgb(255, 255, 255); height: 66px;" />
     </ui:VisualElement>
 </ui:UXML>

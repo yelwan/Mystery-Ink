@@ -30,6 +30,15 @@ public class moveDoor : MonoBehaviour
         }
     }
 
+    public void CloseDoor()
+    {
+        if (isOpen && door != null)
+        {
+            StartCoroutine(MoveDoor(door.position, closedPosition));
+            isOpen = false;
+        }
+    }
+
     private IEnumerator MoveDoor(Vector3 startPos, Vector3 targetPos)
     {
         float elapsedTime = 0f;
