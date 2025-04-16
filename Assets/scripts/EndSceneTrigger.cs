@@ -9,14 +9,14 @@ public class EndSceneTrigger : MonoBehaviour
     [SerializeField] Collider2D player;
     const int EndScene = 2;
     public moveDoor door;
-    private Label countdownLabel;
-    private VisualElement labelElement;
+/*    private Label countdownLabel;
+    private VisualElement labelElement;*/
 
     private void Start()
     {
-        var root = GetComponent<UIDocument>().rootVisualElement;
-        countdownLabel = root.Q<Label>("Countdown");
-        labelElement = countdownLabel;
+        //var root = GetComponent<UIDocument>().rootVisualElement;
+       /* countdownLabel = root.Q<Label>("Countdown");
+        labelElement = countdownLabel;*/
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -24,9 +24,9 @@ public class EndSceneTrigger : MonoBehaviour
         if (collision != player) return;
 
         //Time label fades away
-        labelElement.style.opacity = 1f;
+        //labelElement.style.opacity = 1f;
 
-        StartCoroutine(FadeOutLabel());
+        //StartCoroutine(FadeOutLabel());
 
         // disabling player controller and door collider so player can enter the doorway
         door.GetComponent<Collider2D>().enabled = false;
@@ -55,11 +55,11 @@ public class EndSceneTrigger : MonoBehaviour
         while (elapsed < duration)
         {
             float alpha = Mathf.Lerp(0f, 1f, elapsed / duration);
-            labelElement.style.opacity = alpha;
+            //labelElement.style.opacity = alpha;
             elapsed -= Time.deltaTime;
             yield return null;
         }
 
-        labelElement.style.opacity = 0f;
+        //labelElement.style.opacity = 0f;
     }
 }

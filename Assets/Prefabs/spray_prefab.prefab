@@ -27,7 +27,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1701217143020360702}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 14.69, y: -2.93, z: 0}
   m_LocalScale: {x: 0.30467993, y: 0.30467993, z: 0.30467993}
   m_ConstrainProportionsScale: 0
@@ -102,11 +102,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e26bc169f43e9b44a4c5398301cad7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collectDistance: 3
+  collectDistance: 2
   player: {fileID: 0}
   collected: 0
   colorName: blue
-  colorColor: {r: 0, g: 0, b: 1, a: 1}
+  isEquipped: 0
   amount: 5
 --- !u!61 &6091195596207016995
 BoxCollider2D:
@@ -168,6 +168,7 @@ GameObject:
   - component: {fileID: 7912545669446244761}
   - component: {fileID: 3871645108793618173}
   - component: {fileID: 5419102825060899922}
+  - component: {fileID: 255287077707257113}
   m_Layer: 0
   m_Name: ink-particle system
   m_TagString: Untagged
@@ -198,14 +199,14 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3127624203360442393}
   serializedVersion: 8
-  lengthInSec: 5
+  lengthInSec: 10
   simulationSpeed: 1
   stopAction: 0
   cullingMode: 0
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
   emitterVelocityMode: 1
-  looping: 1
+  looping: 0
   prewarm: 0
   playOnAwake: 0
   useUnscaledTime: 0
@@ -380,7 +381,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 1, g: 1, b: 1, a: 1}
+      maxColor: {r: 0, g: 0.2505206, b: 0.7264151, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -3986,7 +3987,7 @@ ParticleSystem:
     primitives: []
   SubModule:
     serializedVersion: 2
-    enabled: 0
+    enabled: 1
     subEmitters:
     - serializedVersion: 3
       emitter: {fileID: 0}
@@ -4975,7 +4976,7 @@ ParticleSystemRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_RenderMode: 0
   m_MeshDistribution: 0
   m_SortMode: 0
@@ -5022,9 +5023,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _spraycan: {fileID: 391097138583409872}
   _inputManager: {fileID: 0}
+  _playerInputManager: {fileID: 0}
   _maskManager: {fileID: 0}
   _sprayParticles: {fileID: 8637458392849109527}
-  _sprayKey: 101
 --- !u!61 &3871645108793618173
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -5098,3 +5099,19 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &255287077707257113
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3127624203360442393}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0e1621c715295246b7905dad0a682ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _poolingSystem: {fileID: 0}
+  _sprayParticles: {fileID: 8637458392849109527}
+  splat: {fileID: 2273730063451063855, guid: 1960968e981e51640a5fd93b9c5b87ee, type: 3}
+  player: {fileID: 0}
