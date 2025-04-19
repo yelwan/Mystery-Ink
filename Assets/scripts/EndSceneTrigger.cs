@@ -1,7 +1,6 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UIElements;
 
 public class EndSceneTrigger : MonoBehaviour
 {
@@ -9,24 +8,13 @@ public class EndSceneTrigger : MonoBehaviour
     [SerializeField] Collider2D player;
     const int EndScene = 2;
     public moveDoor door;
-/*    private Label countdownLabel;
-    private VisualElement labelElement;*/
-
-    private void Start()
-    {
-        //var root = GetComponent<UIDocument>().rootVisualElement;
-       /* countdownLabel = root.Q<Label>("Countdown");
-        labelElement = countdownLabel;*/
-    }
-
+    public bool GameDone = false;
+    [SerializeField] GameManager gameManager;
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision != player) return;
 
-        //Time label fades away
-        //labelElement.style.opacity = 1f;
-
-        //StartCoroutine(FadeOutLabel());
+        GameDone = true;
 
         // disabling player controller and door collider so player can enter the doorway
         door.GetComponent<Collider2D>().enabled = false;
@@ -36,30 +24,17 @@ public class EndSceneTrigger : MonoBehaviour
         StartCoroutine(WaitForDoor(1));
         door.CloseDoor();
         StartCoroutine(WaitForDoor(2));
+        StartCoroutine(Wait(2));
     }
 
     IEnumerator WaitForDoor(int time)
     {
         yield return new WaitForSeconds(time);
-        SceneManager.LoadScene(2);
     }
 
-    IEnumerator FadeOutLabel()
+    IEnumerator Wait(int timer)
     {
-        yield return new WaitForSeconds(1f); // wait before starting fade
-
-        float duration = 1f;
-        float elapsed = 0f;
-
-
-        while (elapsed < duration)
-        {
-            float alpha = Mathf.Lerp(0f, 1f, elapsed / duration);
-            //labelElement.style.opacity = alpha;
-            elapsed -= Time.deltaTime;
-            yield return null;
-        }
-
-        //labelElement.style.opacity = 0f;
+        yield return new WaitForSeconds(timer);
+        gameManager.ProgressLevel();
     }
 }

@@ -19,8 +19,6 @@ public class CameraZoomIn : MonoBehaviour
         playerCam.Follow = transformP;
         playerCam.LookAt = transformP;
 
-  
-
         wideViewCam.Priority = 20;
         playerCam.Priority = 10;
 
