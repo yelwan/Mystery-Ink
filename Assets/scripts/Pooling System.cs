@@ -8,7 +8,8 @@ public class PoolingSystem : MonoBehaviour
     Queue<GameObject> projectilePool;
     [SerializeField] Transform projectileParent;
     [SerializeField] GameObject projectilePrefab;
-    [SerializeField] SprayParticles sprayParticles; 
+    [SerializeField] SprayParticles sprayParticles;
+    [SerializeField] int NumOfPooledObjects = 10;
 
 
 
@@ -16,7 +17,7 @@ public class PoolingSystem : MonoBehaviour
     {
         activeProjectiles = new List<GameObject>();
         projectilePool = new Queue<GameObject>();
-        for (int i = 0; i < 10; i++)
+        for (int i = 0; i < NumOfPooledObjects; i++)
         {
             CreatePooledProjectile(Vector2.zero);
         }
@@ -51,7 +52,7 @@ public class PoolingSystem : MonoBehaviour
         projectile.transform.position = hit; 
         projectile.SetActive(true);
 
-        if (activeProjectiles.Count > 10)
+        if (activeProjectiles.Count > NumOfPooledObjects)
         {
             ClearPool();
         }

@@ -4,15 +4,20 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    public int Timer = 5;
+    public int Timer = 33;
     [SerializeField] EndSceneTrigger trigger;
     [SerializeField] GameObject player;
-    [SerializeField] int CurrentLevel = 1; //Progresses as each level is completed. Max is 3 for now
+    public int CurrentLevel = 1; //Progresses as each level is completed. Max is 3 for now
     [SerializeField] int LastLevel = 3;
 
+    public int TimerL2 = 83; //+3 for the door to open and close
+    public int TimerL3 = 103;
+    
+    [SerializeField] TimerSystem timerSystem;
+    Coroutine coroutineCountdown;
     void Start()
     {
-        StartCoroutine("Countdown", Timer);
+        coroutineCountdown = StartCoroutine("Countdown", Timer);
     }
 
     IEnumerator Countdown(int timer)
@@ -34,9 +39,13 @@ public class GameManager : MonoBehaviour
             if (CurrentLevel == 2)
             {
                 TeleportPlayer(51.5, -10.45);
+                StopCoroutine(coroutineCountdown);
+                StopCoroutine(timerSystem.countdownCoroutine);
+                StopAllCoroutines();
+                StartCoroutine(Countdown(TimerL2));
             }
 
-            else if (CurrentLevel == 3)
+        else if (CurrentLevel == 3)
             {
                 //TeleportPlayer( , ); //Do nothing for now. Teleport player to level 3
                 //For now, just loads end scene

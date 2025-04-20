@@ -11,21 +11,21 @@ public class CameraZoomIn : MonoBehaviour
     [SerializeField] float delayBeforeZoom = 2f;
     [SerializeField] GameObject player;
     Coroutine coroutine = null;
+    Transform transformP;
 
 
     void Start()
     {
-        Transform transformP = player.GetComponent<Transform>();
-        playerCam.Follow = transformP;
-        playerCam.LookAt = transformP;
+
+        transformP = player.GetComponent<Transform>();
+        ZoomToPlayer2();
 
         wideViewCam.Priority = 20;
         playerCam.Priority = 10;
 
         coroutine = StartCoroutine(ZoomInCoroutine(delayBeforeZoom));
  
-        playerCam.Follow = transformP;
-        playerCam.LookAt = transformP;
+        ZoomToPlayer2();
     }
 
     void ZoomToPlayer()
@@ -38,5 +38,18 @@ public class CameraZoomIn : MonoBehaviour
     {
        yield return new WaitForSeconds(delay);
        ZoomToPlayer();
+    }
+
+    public void ZoomToObject(float x, float y, float z)
+    {
+        Vector3 newPos = new Vector3(x, y, z); 
+        playerCam.Follow.transform.position = newPos;
+        playerCam.LookAt.transform.position = newPos;
+    }
+
+    public void ZoomToPlayer2()
+    {
+        playerCam.Follow = transformP;
+        playerCam.LookAt = transformP;
     }
 }

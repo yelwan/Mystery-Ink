@@ -24,7 +24,6 @@ public class MaskManager : MonoBehaviour
 
     void Interact()
     {
-   
             spriteRenderer.enabled = true;
         if (letter != null) letter.enabled = true;
 

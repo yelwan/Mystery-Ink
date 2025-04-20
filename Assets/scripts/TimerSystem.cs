@@ -8,29 +8,38 @@ public class TimerSystem : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
 
     [SerializeField] int Timer;
+    [SerializeField] int TimerL2;
+    [SerializeField] int TimerL3;
     [SerializeField] GameManager Manager;
     private Label countdownLabel;
     private VisualElement labelElement;
     [SerializeField] EndSceneTrigger trigger;
 
 
-    private Coroutine countdownCoroutine;
+    public Coroutine countdownCoroutine;
     private bool hasFadedOut = false;
     private bool countdownActive = false;
-
+    private bool level2TimerStarted = false;
+    private int currentTimerValue; // Add this with your other variables
 
     private void Awake()
     {
         Timer = Manager.Timer;
+        TimerL2 = Manager.TimerL2;
+        TimerL3 = Manager.TimerL3;
     }
 
     private void Start()
     {
-        TimerUIActivation();
+        TimerUIActivation(Timer);
     }
 
-    public void TimerUIActivation()
+    public void TimerUIActivation(int TimeNUM)
     {
+        // Reset state variables
+        hasFadedOut = false;
+        countdownActive = false;
+
         var root = GetComponent<UIDocument>().rootVisualElement;
         countdownLabel = root.Q<Label>("Countdown");
         labelElement = countdownLabel;
@@ -38,7 +47,8 @@ public class TimerSystem : MonoBehaviour
         labelElement.style.opacity = 0f;
 
         StartCoroutine(FadeInLabel());
-        countdownCoroutine = StartCoroutine(Countdown(Timer));
+        Debug.Log("Faded in Label");
+        countdownCoroutine = StartCoroutine(Countdown(TimeNUM));
     }
 
     private void Update()
@@ -47,16 +57,22 @@ public class TimerSystem : MonoBehaviour
         {
             hasFadedOut = true;
 
-            if (countdownActive && countdownCoroutine != null)
+/*            if (countdownActive && countdownCoroutine != null)
             {
                 StopCoroutine(countdownCoroutine);
-            }
+            }*/
 
             StartCoroutine(FadeOutLabel());
         }
 
-
+        if (Manager.CurrentLevel == 2 && !level2TimerStarted)
+        {
+            level2TimerStarted = true;
+            trigger.GameDone = false;
+            TimerUIActivation(TimerL2);
+        }
     }
+
     IEnumerator FadeInLabel()
     {
         yield return new WaitForSeconds(3f); // wait before starting fade
@@ -74,16 +90,18 @@ public class TimerSystem : MonoBehaviour
 
         labelElement.style.opacity = 1f; 
     }
-    IEnumerator Countdown(int timer)
+
+    public IEnumerator Countdown(int timer)
     {
+        currentTimerValue = timer; // Initialize the current timer value
         countdownActive = true;
 
-        while (Timer > 0)
+        while (currentTimerValue > 0)
         {
-            countdownLabel.text = Timer.ToString();
+            countdownLabel.text = currentTimerValue.ToString();
             yield return new WaitForSeconds(1f);
-            Timer--;
-
+            currentTimerValue--;
+            Debug.Log(currentTimerValue.ToString());
             if (trigger.GameDone)
             {
                 yield break;
@@ -115,5 +133,6 @@ public class TimerSystem : MonoBehaviour
 
         labelElement.style.opacity = 0f;
     }
+
 
 }

@@ -24,7 +24,7 @@ public class EndSceneTrigger : MonoBehaviour
         StartCoroutine(WaitForDoor(1));
         door.CloseDoor();
         StartCoroutine(WaitForDoor(2));
-        StartCoroutine(Wait(2));
+        StartCoroutine(WaitToProgress(2));
     }
 
     IEnumerator WaitForDoor(int time)
@@ -32,7 +32,7 @@ public class EndSceneTrigger : MonoBehaviour
         yield return new WaitForSeconds(time);
     }
 
-    IEnumerator Wait(int timer)
+    IEnumerator WaitToProgress(int timer)
     {
         yield return new WaitForSeconds(timer);
         gameManager.ProgressLevel();
