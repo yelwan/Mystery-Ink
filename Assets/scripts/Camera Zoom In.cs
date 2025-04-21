@@ -8,6 +8,7 @@ public class CameraZoomIn : MonoBehaviour
 {
     [SerializeField] CinemachineCamera wideViewCam;
     [SerializeField] CinemachineCamera playerCam;
+    [SerializeField] CinemachineCamera objectCam;
     [SerializeField] float delayBeforeZoom = 2f;
     [SerializeField] GameObject player;
     Coroutine coroutine = null;
@@ -42,14 +43,18 @@ public class CameraZoomIn : MonoBehaviour
 
     public void ZoomToObject(float x, float y, float z)
     {
-        Vector3 newPos = new Vector3(x, y, z); 
-        playerCam.Follow.transform.position = newPos;
-        playerCam.LookAt.transform.position = newPos;
+        Vector3 newPos = new Vector3(x, y, z);
+        objectCam.Follow.transform.position = newPos;
+        objectCam.LookAt.transform.position = newPos;
+        playerCam.Priority = 15;
+        objectCam.Priority = 20;
     }
 
     public void ZoomToPlayer2()
     {
         playerCam.Follow = transformP;
         playerCam.LookAt = transformP;
+        playerCam.Priority= 20;
+        objectCam.Priority= 15;
     }
 }
