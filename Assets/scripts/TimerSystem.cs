@@ -18,7 +18,7 @@ public class TimerSystem : MonoBehaviour
 
     public Coroutine countdownCoroutine;
     private bool hasFadedOut = false;
-    private bool countdownActive = false;
+    //private bool countdownActive = false;
     private bool level2TimerStarted = false;
     private int currentTimerValue; // Add this with your other variables
 
@@ -38,7 +38,7 @@ public class TimerSystem : MonoBehaviour
     {
         // Reset state variables
         hasFadedOut = false;
-        countdownActive = false;
+        //countdownActive = false;
 
         var root = GetComponent<UIDocument>().rootVisualElement;
         countdownLabel = root.Q<Label>("Countdown");
@@ -94,21 +94,20 @@ public class TimerSystem : MonoBehaviour
     public IEnumerator Countdown(int timer)
     {
         currentTimerValue = timer; // Initialize the current timer value
-        countdownActive = true;
+        //countdownActive = true;
 
         while (currentTimerValue > 0)
         {
             countdownLabel.text = currentTimerValue.ToString();
             yield return new WaitForSeconds(1f);
             currentTimerValue--;
-            Debug.Log(currentTimerValue.ToString());
             if (trigger.GameDone)
             {
                 yield break;
             }
         }
 
-        countdownActive = false;
+        //countdownActive = false;
 
         yield return new WaitForSeconds(2f);
         if (!hasFadedOut)
