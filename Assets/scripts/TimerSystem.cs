@@ -20,6 +20,7 @@ public class TimerSystem : MonoBehaviour
     private bool hasFadedOut = false;
     //private bool countdownActive = false;
     private bool level2TimerStarted = false;
+    private bool level3TimerStarted = false;
     private int currentTimerValue; // Add this with your other variables
 
     private void Awake()
@@ -70,6 +71,13 @@ public class TimerSystem : MonoBehaviour
             level2TimerStarted = true;
             trigger.GameDone = false;
             TimerUIActivation(TimerL2);
+        }
+
+        if(Manager.CurrentLevel == 3 && !level3TimerStarted)
+        {
+            level3TimerStarted = true;
+            trigger.GameDone = false;
+            TimerUIActivation(TimerL3);
         }
     }
 

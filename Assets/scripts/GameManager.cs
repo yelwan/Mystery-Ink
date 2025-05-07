@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] EndSceneTrigger trigger;
     [SerializeField] GameObject player;
     public int CurrentLevel = 1; //Progresses as each level is completed. Max is 3 for now
-    [SerializeField] int LastLevel = 3;
+    [SerializeField] int LastLevel = 4;
 
     public int TimerL2 = 83; //+3 for the door to open and close
     public int TimerL3 = 103;
@@ -26,7 +26,7 @@ public class GameManager : MonoBehaviour
         Debug.Log("This is the timer finished!");
         if (!trigger.GameDone) { SceneManager.LoadScene(3); } //Must start a new game.
 
-        if(CurrentLevel <= LastLevel)
+        if(CurrentLevel < LastLevel)
         {
             trigger.GameDone = false;
         }
@@ -36,29 +36,33 @@ public class GameManager : MonoBehaviour
     {
         CurrentLevel++;
 
-            if (CurrentLevel == 2)
-            {
-                TeleportPlayer(51.5, -10.45);
-                StopCoroutine(coroutineCountdown);
-                StopCoroutine(timerSystem.countdownCoroutine);
-                StopAllCoroutines();
-                StartCoroutine(Countdown(TimerL2));
-            }
+        if (CurrentLevel == 2)
+        {
+            TeleportPlayer(51.5, -10.45);
+            StopCoroutine(coroutineCountdown);
+            StopCoroutine(timerSystem.countdownCoroutine);
+            StopAllCoroutines();
+            StartCoroutine(Countdown(TimerL2));
+        }
 
         else if (CurrentLevel == 3)
-            {
-                //TeleportPlayer( , ); //Do nothing for now. Teleport player to level 3
-                //For now, just loads end scene
-                //Could call a function that makes scene fade in
-                SceneManager.LoadScene(2);
-            }
+        {
+            TeleportPlayer(-0.3, -57.5); //Do nothing for now. Teleport player to level 3
+            StopCoroutine(coroutineCountdown);
+            Debug.Log("This is 1");
+            StopCoroutine(timerSystem.countdownCoroutine);
+            Debug.Log("This is 2");
+            StopAllCoroutines();
+            Debug.Log("This is 3");
+            StartCoroutine(Countdown(TimerL3));
+            Debug.Log("This is 4");
+        }
 
-            /*
-            else if (CurrentLevel == 4)
-            {
-                //Load end scene
-                
-            }*/
+        else if (CurrentLevel == 4)
+        {
+            //Load end scene
+            SceneManager.LoadScene(2);
+        }
     }
 
     void TeleportPlayer(double x, double y)
