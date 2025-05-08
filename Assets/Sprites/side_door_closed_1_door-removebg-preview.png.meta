@@ -160,7 +160,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      side_door_closed_1_door-removebg-preview_0: 49405765617763267
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

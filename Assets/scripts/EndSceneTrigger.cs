@@ -10,6 +10,7 @@ public class EndSceneTrigger : MonoBehaviour
     public moveDoor door;
     public bool GameDone = false;
     [SerializeField] GameManager gameManager;
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision != player) return;
@@ -17,6 +18,10 @@ public class EndSceneTrigger : MonoBehaviour
         GameDone = true;
 
         // disabling player controller and door collider so player can enter the doorway
+        StartCoroutine(WaitToProgress(2));
+
+        if (null == door) return;
+
         door.GetComponent<Collider2D>().enabled = false;
         player.GetComponent<PlayerController>().enabled = false;
 
@@ -24,7 +29,7 @@ public class EndSceneTrigger : MonoBehaviour
         StartCoroutine(WaitForDoor(1));
         door.CloseDoor();
         StartCoroutine(WaitForDoor(2));
-        StartCoroutine(WaitToProgress(2));
+        
     }
 
     IEnumerator WaitForDoor(int time)

@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public int Timer = 33;
+    [SerializeField] Transform greenObject; 
     [SerializeField] EndSceneTrigger trigger;
     [SerializeField] GameObject player;
     public int CurrentLevel = 1; //Progresses as each level is completed. Max is 3 for now
@@ -38,7 +39,7 @@ public class GameManager : MonoBehaviour
 
         if (CurrentLevel == 2)
         {
-            TeleportPlayer(51.5, -10.45);
+            TeleportPlayer(greenObject.position.x, greenObject.position.y);
             StopCoroutine(coroutineCountdown);
             StopCoroutine(timerSystem.countdownCoroutine);
             StopAllCoroutines();
@@ -50,7 +51,7 @@ public class GameManager : MonoBehaviour
             TeleportPlayer(-0.3, -57.5); //Do nothing for now. Teleport player to level 3
             StopCoroutine(coroutineCountdown);
             Debug.Log("This is 1");
-            StopCoroutine(timerSystem.countdownCoroutine);
+            timerSystem.StopCoroutine(timerSystem.countdownCoroutine);
             Debug.Log("This is 2");
             StopAllCoroutines();
             Debug.Log("This is 3");
