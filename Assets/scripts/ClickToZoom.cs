@@ -15,7 +15,7 @@ public class ClickToZoom : MonoBehaviour
         else if(!zoomedIn)
         {
             zoomedIn = true;
-            cam.ZoomToObject(transform.position.x, transform.position.y, transform.position.z);
+            cam.ZoomToObject(this.transform);
         }
     }
 }

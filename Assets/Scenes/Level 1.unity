@@ -1491,8 +1491,8 @@ MonoBehaviour:
   m_LegacyPriority: 0
   Target:
     TrackingTarget: {fileID: 1815585336}
-    LookAtTarget: {fileID: 0}
-    CustomLookAtTarget: 0
+    LookAtTarget: {fileID: 542237405}
+    CustomLookAtTarget: 1
   Lens:
     FieldOfView: 1
     OrthographicSize: 2.58
@@ -13225,7 +13225,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Timer: 63
-  greenObject: {fileID: 1815585336}
   trigger: {fileID: 1407474376}
   player: {fileID: 1408952892}
   CurrentLevel: 1

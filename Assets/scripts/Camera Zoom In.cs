@@ -46,11 +46,10 @@ public class CameraZoomIn : MonoBehaviour
        ZoomToPlayer();
     }
 
-    public void ZoomToObject(float x, float y, float z)
+    public void ZoomToObject(Transform targetTransform)
     {
-        Vector3 newPos = new Vector3(x, y, z);
-        objectCam.Follow.transform.position = newPos;
-        objectCam.LookAt.transform.position = newPos;
+        objectCam.Follow = targetTransform;
+        objectCam.LookAt = targetTransform;
         playerCam.Priority = 15;
         objectCam.Priority = 20;
     }
@@ -59,7 +58,6 @@ public class CameraZoomIn : MonoBehaviour
     {
         playerCam.Follow = transformP;
         playerCam.LookAt = transformP;
-
 
         playerCam.Priority= 20;
         objectCam.Priority= 15;
