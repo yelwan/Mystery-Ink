@@ -2,6 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// Code review : you didn't apply the code review comments from last time.
+// Reminder : instead of a "pooling system" class, you should have a game object pool that
+// extends unity's native pooling system, and then create instances of each pool per "type" of object
+// example : ProjectilePool, RabbitPool, SandwichPool...
 public class PoolingSystem : MonoBehaviour
 {
     List<GameObject> activeProjectiles;

@@ -5,23 +5,25 @@ using UnityEngine.UIElements;
 
 public class TimerSystem : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
 
+    // Code review : Your timer system class is doing way too many things.
+    // Ideas for refactoring : 
+    // - Timer class : runs a simple timer and dispatches events on started, tick, stop, ended. Public functions for Start and Stop. 
+    // - TimerUI : listens to a timer. Updates the timer text on each tick
     [SerializeField] int Timer;
     [SerializeField] int TimerL2;
     [SerializeField] int TimerL3;
-    [SerializeField] GameManager Manager;
+    [SerializeField] GameManager Manager; // Code review : Timer system should not reference the game manager. Use the observer pattern with a Level script.
     private Label countdownLabel;
     private VisualElement labelElement;
-    [SerializeField] EndSceneTrigger trigger;
-
+    [SerializeField] EndSceneTrigger trigger; // Code review : Timer system should not reference the trigger. Use the observer pattern with a Level script.
 
     public Coroutine countdownCoroutine;
     private bool hasFadedOut = false;
     //private bool countdownActive = false;
     private bool level2TimerStarted = false;
     private bool level3TimerStarted = false;
-    private int currentTimerValue; // Add this with your other variables
+    private int currentTimerValue; 
 
     private void Awake()
     {
@@ -47,7 +49,7 @@ public class TimerSystem : MonoBehaviour
 
         labelElement.style.opacity = 0f;
 
-        StartCoroutine(FadeInLabel());
+        StartCoroutine(FadeInLabel()); // Code review : these effects could be encapsulated in the TimerUI class
         Debug.Log("Faded in Label");
         countdownCoroutine = StartCoroutine(Countdown(TimeNUM));
     }

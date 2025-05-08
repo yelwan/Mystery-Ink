@@ -5,6 +5,8 @@ using UnityEngine.InputSystem;
 
 public class InputManager : MonoBehaviour
 {
+    // Code review : add functions to enable and disable inputs so that 
+    // you can call them in the start and end level flows (cutscenes, etc...)
     [SerializeField] InputAction MoveAction;
     [SerializeField] InputAction E;
     Vector2 move;

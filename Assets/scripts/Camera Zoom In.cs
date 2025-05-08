@@ -3,6 +3,7 @@ using Unity.Cinemachine;
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using Mono.Cecil.Cil;
 
 public class CameraZoomIn : MonoBehaviour
 {
@@ -14,6 +15,10 @@ public class CameraZoomIn : MonoBehaviour
     Coroutine coroutine = null;
     Transform transformP;
 
+    // Code review : 
+    // For switching between vCams, a cleaner way is to simply call
+    // cinemachineCamera.Prioritize();
+    // That way, you will not need to manage priority values.
 
     void Start()
     {
@@ -54,6 +59,8 @@ public class CameraZoomIn : MonoBehaviour
     {
         playerCam.Follow = transformP;
         playerCam.LookAt = transformP;
+
+
         playerCam.Priority= 20;
         objectCam.Priority= 15;
     }
