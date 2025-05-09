@@ -5,18 +5,14 @@ using UnityEngine;
 public class Level : MonoBehaviour
 {
     [SerializeField] Transform playerSpawnPoint;
-    Coroutine coroutineCountdown;
-
-    void Start()
-    {
-        coroutineCountdown = StartCoroutine("Countdown", Timer);
-    }
+    Coroutine countdownCoroutine;
+    [SerializeField] int levelTimer = 60;
+   
 
 
     public void StartLevel(GameObject player)
     {
         TeleportPlayer(player);
-        StartCountdown();
     }
 
 
@@ -36,13 +32,7 @@ public class Level : MonoBehaviour
         yield return new WaitForSeconds(timer);
     }
 
-    private void StartCountdown()
-    {
-        if (countdownCoroutine != null)
-            StopCoroutine(countdownCoroutine);
+   
 
-        countdownCoroutine = StartCoroutine(CountdownCoroutine());
-    }
-
-  
+    public int GetLevelTimer() => levelTimer;
 }

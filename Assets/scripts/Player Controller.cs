@@ -32,4 +32,5 @@ public class PlayerController : MonoBehaviour
     }
 
     public Vector2 GetMoveDirection() => moveDirection;
+    public InputManager GetInputManager() => inputManager;
 }

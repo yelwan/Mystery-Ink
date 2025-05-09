@@ -1492,7 +1492,7 @@ MonoBehaviour:
   Target:
     TrackingTarget: {fileID: 1815585336}
     LookAtTarget: {fileID: 542237405}
-    CustomLookAtTarget: 1
+    CustomLookAtTarget: 0
   Lens:
     FieldOfView: 1
     OrthographicSize: 2.58
@@ -6789,6 +6789,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 877753452}
+  - component: {fileID: 877753453}
   m_Layer: 0
   m_Name: Level 3
   m_TagString: Untagged
@@ -6828,6 +6829,20 @@ Transform:
   - {fileID: 1545781973}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &877753453
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 877753451}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4329495b3ed5492428bfbb9a44162b87, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerSpawnPoint: {fileID: 1874513791}
+  levelTimer: 103
 --- !u!1 &885629539
 GameObject:
   m_ObjectHideFlags: 0
@@ -7363,6 +7378,7 @@ GameObject:
   - component: {fileID: 973709215}
   - component: {fileID: 973709217}
   - component: {fileID: 973709218}
+  - component: {fileID: 973709219}
   m_Layer: 5
   m_Name: UIDocument
   m_TagString: Untagged
@@ -7416,11 +7432,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2962fca6035227547831e60c89d54726, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Timer: 0
-  TimerL2: 0
-  TimerL3: 0
-  Manager: {fileID: 1659975840}
-  trigger: {fileID: 1407474376}
+  timerUI: {fileID: 973709219}
 --- !u!114 &973709218
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7438,6 +7450,18 @@ MonoBehaviour:
   trigger: {fileID: 450752246}
   door: {fileID: 1644673539}
   pillar: {fileID: 963504726}
+--- !u!114 &973709219
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 973709214}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b18ff82e90359e54c83f3efd7211689f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1016956208
 GameObject:
   m_ObjectHideFlags: 0
@@ -9720,6 +9744,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1286271511}
+  - component: {fileID: 1286271512}
   m_Layer: 0
   m_Name: Level 2
   m_TagString: Untagged
@@ -9760,6 +9785,20 @@ Transform:
   - {fileID: 687633786}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1286271512
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1286271510}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4329495b3ed5492428bfbb9a44162b87, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerSpawnPoint: {fileID: 1216040620}
+  levelTimer: 86
 --- !u!1 &1345398616
 GameObject:
   m_ObjectHideFlags: 0
@@ -11290,6 +11329,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1434617812}
+  - component: {fileID: 1434617813}
   m_Layer: 0
   m_Name: Level 1
   m_TagString: Untagged
@@ -11318,6 +11358,20 @@ Transform:
   - {fileID: 1877942319}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1434617813
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1434617811}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4329495b3ed5492428bfbb9a44162b87, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerSpawnPoint: {fileID: 1982178019}
+  levelTimer: 63
 --- !u!1 &1464618253
 GameObject:
   m_ObjectHideFlags: 0
@@ -13224,14 +13278,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 976ec8a7007d25045b352105419be5e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Timer: 63
-  trigger: {fileID: 1407474376}
+  levels:
+  - {fileID: 1434617813}
+  - {fileID: 1286271512}
+  - {fileID: 877753453}
   player: {fileID: 1408952892}
-  CurrentLevel: 1
-  LastLevel: 3
-  TimerL2: 83
-  TimerL3: 103
   timerSystem: {fileID: 973709217}
+  timerUI: {fileID: 0}
+  door: {fileID: 1271735193}
+  playerCollider: {fileID: 1408952893}
 --- !u!1 &1673842754
 GameObject:
   m_ObjectHideFlags: 0
@@ -16462,6 +16517,37 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1982178018
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1982178019}
+  m_Layer: 0
+  m_Name: Player Spawn Point Level 1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1982178019
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1982178018}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -9.36, y: -4.11, z: 0}
+  m_LocalScale: {x: 0.25754, y: 0.25754, z: 0.25754}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2001039528
 GameObject:
   m_ObjectHideFlags: 0
@@ -17262,6 +17348,7 @@ SceneRoots:
   - {fileID: 1408952896}
   - {fileID: 404302650}
   - {fileID: 740673666}
+  - {fileID: 1982178019}
   - {fileID: 1397864455}
   - {fileID: 172293545}
   - {fileID: 186985885}
