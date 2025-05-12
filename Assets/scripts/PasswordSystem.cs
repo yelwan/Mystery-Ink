@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public class PasswordSystm : MonoBehaviour
+public class PasswordSystem : MonoBehaviour
 {
     private TextField pass;
     private VisualElement labelElement;
@@ -13,6 +13,7 @@ public class PasswordSystm : MonoBehaviour
     [SerializeField] Collider2D door;
     [SerializeField] Collider2D pillar;
 
+
     void Start()
     {
         var root = GetComponent<UIDocument>().rootVisualElement;
@@ -23,19 +24,21 @@ public class PasswordSystm : MonoBehaviour
 
     void Update()
     {
-        if (trigger.triggered && !displayed)
+        /*if (trigger.triggered && !displayed)
         {
             displayed = true;
             labelElement.style.opacity = 1f;
+        }
 
+      
             foreach (char c in Input.inputString)
             {
-                if (c == '\b') // Backspace
+                if (c == '\b')
                 {
                     if (pass.value.Length > 0)
                         pass.value = pass.value.Substring(0, pass.value.Length - 1);
                 }
-                else if (c == '\n' || c == '\r') // Enter
+                else if (c == '\n' || c == '\r')
                 {
                     Debug.Log("Enter Pressed: " + pass.value);
                 }
@@ -44,23 +47,22 @@ public class PasswordSystm : MonoBehaviour
                     pass.value += c;
                 }
             }
-        }
+        
 
-        if(!trigger.open)
+        if (!trigger.open)
         {
             labelElement.style.opacity = 0f;
         }
 
-        if(trigger.open)
+        if (trigger.open)
         {
             labelElement.style.opacity = 1f;
         }
 
-        if(pass.value == "cat")
+        if (pass.value == "cat")
         {
             door.enabled = false;
             pillar.enabled = false;
-        }
+        }*/
     }
 }
-

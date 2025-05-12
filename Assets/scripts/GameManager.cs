@@ -1,101 +1,69 @@
 using System.Collections;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    // Code review : 
-    // Game Manager manages the flow of the game from a macro perspective, therefore level progression.
-    // All your levels are in the same scene, so it would be easy to reference them here in an array.
-    // You could create a Level script that you place at the root of each level. The level script 
-    // Would have simple functions such as start level, stop level, on level ended events, etc... 
-    // It would manage the level flow during its lifecycle. The teleportPlayer function would also be done from 
-    // the Level script as part of the start level flow. Each level knows its player spawn point.
-    // The level script would also have a reference to a level timer (one per level)
-
-    // Level class : manages level flow (whatever happens when the level starts, ends, win / lose conditions, timer...)
-    // Timer class : manages time constraints on a level
-    // Game Manager : manages game flow (such as going to the next level on completion, etc...)
-    
-    public int Timer = 33; 
-    [SerializeField] Transform greenObject; 
-    [SerializeField] EndSceneTrigger trigger;
-    [SerializeField] GameObject player;
-    public int CurrentLevel = 1; //Progresses as each level is completed. Max is 3 for now
-    [SerializeField] int LastLevel = 4;
-
-    // Code review : instead of having one timer variable per level all stacked in the game manager, you should have one instance 
-    // of a timer per level (or encapulsate it in a Level script that manages the level's flow, as explained above). 
-    // Your game manager would one cache the current timer, start it when the level starts and listen to it
-    public int TimerL2 = 83; //+3 for the door to open and close 
-    public int TimerL3 = 103;
-    
+    [SerializeField] Level[] levels;         
+    [SerializeField] GameObject player;     
     [SerializeField] TimerSystem timerSystem;
-    Coroutine coroutineCountdown;
-    void Start()
+    [SerializeField] moveDoor door;          
+    private int currentLevelIndex = 0;        
+
+    private bool gameDone = false;            
+
+    [SerializeField] Collider2D playerCollider;
+
+    private void Start()
     {
-        coroutineCountdown = StartCoroutine("Countdown", Timer);
+        StartLevel();
     }
 
-    IEnumerator Countdown(int timer)
+    private void Update()
     {
-        yield return new WaitForSeconds(timer);
-        Debug.Log("This is the timer finished!");
-        if (!trigger.GameDone) { SceneManager.LoadScene(3); } //Must start a new game.
-
-        if(CurrentLevel < LastLevel)
-        {
-            trigger.GameDone = false;
-        }
+        if (gameDone) return;
     }
 
-    public void ProgressLevel()
+    private void StartLevel()
     {
-        CurrentLevel++;
+        if (currentLevelIndex >= levels.Length) return;
 
-        if (CurrentLevel == 2)
-        {
-            TeleportPlayer(greenObject.position.x, greenObject.position.y);
-            StopCoroutine(coroutineCountdown);
-            StopCoroutine(timerSystem.countdownCoroutine);
-            StopAllCoroutines();
-            StartCoroutine(Countdown(TimerL2));
-        }
+        levels[currentLevelIndex].StartLevel(player); 
+        timerSystem.StartTimer(levels[currentLevelIndex].GetLevelTimer());  
 
-        else if (CurrentLevel == 3)
-        {
-            TeleportPlayer(-0.3, -57.5); //Do nothing for now. Teleport player to level 3
-            StopCoroutine(coroutineCountdown);
-            Debug.Log("This is 1");
-            timerSystem.StopCoroutine(timerSystem.countdownCoroutine);
-            Debug.Log("This is 2");
-            StopAllCoroutines();
-            Debug.Log("This is 3");
-            StartCoroutine(Countdown(TimerL3));
-            Debug.Log("This is 4");
-        }
-
-        else if (CurrentLevel == 4)
-        {
-            //Load end scene
-            SceneManager.LoadScene(2);
-        }
+        gameDone = false;
     }
 
-    
-    void TeleportPlayer(double x, double y)
+    private void CompleteLevel()
     {
-        Vector2 new_position = new Vector2((float)x, (float)y);
-        player.transform.position = new_position;
+        gameDone = true;
+        player.GetComponent<PlayerController>().enabled = false;
+        door.GetComponent<Collider2D>().enabled = false;
 
-        StartCoroutine(Wait(3));
-        player.GetComponent<PlayerController>().enabled = true;
+        door.CloseDoor();
+
+        StartCoroutine(WaitToProgress(2));
     }
 
-    IEnumerator Wait(int timer)
+    private IEnumerator WaitToProgress(int time)
     {
-        yield return new WaitForSeconds(timer);
+        yield return new WaitForSeconds(time);
+
+        NextLevel();
+    }
+
+    public void NextLevel()
+    {
+        currentLevelIndex++;
+
+        if (currentLevelIndex == 4)
+        {
+            SceneManager.LoadScene(2); 
+            return;
+        }
+
+        if (currentLevelIndex >= levels.Length) return;
+
+        StartLevel();
     }
 }
-

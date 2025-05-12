@@ -42,6 +42,6 @@ public class EndSceneTrigger : MonoBehaviour
     IEnumerator WaitToProgress(int timer)
     {
         yield return new WaitForSeconds(timer);
-        gameManager.ProgressLevel();
+        gameManager.NextLevel();
     }
 }

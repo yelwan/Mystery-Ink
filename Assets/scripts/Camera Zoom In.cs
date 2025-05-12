@@ -8,8 +8,13 @@ using Mono.Cecil.Cil;
 public class CameraZoomIn : MonoBehaviour
 {
     [SerializeField] CinemachineCamera wideViewCam;
-    [SerializeField] CinemachineCamera playerCam;
-    [SerializeField] CinemachineCamera objectCam;
+
+    //no objects, so commented out object cam, and commented out Player cam to test which view is the
+    //better experience for a maze game.
+
+    //[SerializeField] CinemachineCamera playerCam;
+    //[SerializeField] CinemachineCamera objectCam;
+
     [SerializeField] float delayBeforeZoom = 2f;
     [SerializeField] GameObject player;
     Coroutine coroutine = null;
@@ -22,46 +27,52 @@ public class CameraZoomIn : MonoBehaviour
 
     void Start()
     {
-
         transformP = player.GetComponent<Transform>();
         ZoomToPlayer2();
 
-        wideViewCam.Priority = 20;
-        playerCam.Priority = 10;
+        //wideViewCam.Priority = 20;
+        //playerCam.Priority = 10;
+
+        wideViewCam.Prioritize();
 
         coroutine = StartCoroutine(ZoomInCoroutine(delayBeforeZoom));
  
         ZoomToPlayer2();
     }
 
-    void ZoomToPlayer()
+   /* void ZoomToPlayer()
     {
-        wideViewCam.Priority = 10;
-        playerCam.Priority = 20;
+        //wideViewCam.Priority = 10;
+        //playerCam.Priority = 20;
+        playerCam.Prioritize();
     }
+*/
 
     IEnumerator ZoomInCoroutine(float delay)
     {
        yield return new WaitForSeconds(delay);
-       ZoomToPlayer();
+
+        //playerCam.Prioritize();
+        //ZoomToPlayer();
     }
 
-    public void ZoomToObject(float x, float y, float z)
+    public void ZoomToObject(Transform targetTransform)
     {
-        Vector3 newPos = new Vector3(x, y, z);
-        objectCam.Follow.transform.position = newPos;
-        objectCam.LookAt.transform.position = newPos;
-        playerCam.Priority = 15;
-        objectCam.Priority = 20;
+        //objectCam.Follow = targetTransform;
+        //objectCam.LookAt = targetTransform;
+        /*playerCam.Priority = 15;
+        objectCam.Priority = 20;*/
+        //objectCam.Prioritize();
     }
 
     public void ZoomToPlayer2()
     {
-        playerCam.Follow = transformP;
-        playerCam.LookAt = transformP;
+        //playerCam.Follow = transformP;
+        //playerCam.LookAt = transformP;
 
-
-        playerCam.Priority= 20;
-        objectCam.Priority= 15;
+        /*playerCam.Priority= 20;
+        objectCam.Priority= 15;*/
+        //playerCam.Prioritize();
+        wideViewCam.Prioritize();
     }
 }
