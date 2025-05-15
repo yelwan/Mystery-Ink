@@ -32,6 +32,6 @@ public class TimerSystem : MonoBehaviour
         timerUI.TimerEnded();
         yield return new WaitForSeconds(1f);
 
-        SceneManager.LoadScene(2);
+        SceneManager.LoadScene(3);
     }
 }

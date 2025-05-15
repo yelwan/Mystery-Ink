@@ -30,6 +30,8 @@ public class SprayController : MonoBehaviour
 
     private bool _isSpraying = false;
 
+    [SerializeField] AudioSource sprayAudio;
+
     private void Awake()
     {
         collisionEvents = new List<ParticleCollisionEvent>();
@@ -91,6 +93,9 @@ public class SprayController : MonoBehaviour
 
         _sprayParticles.Play();
         _isSpraying = true;
+
+        if (!sprayAudio.isPlaying)
+            sprayAudio.Play();
     }
 
     private void StopSpraying()
@@ -99,6 +104,9 @@ public class SprayController : MonoBehaviour
 
         _sprayParticles.Stop(true, ParticleSystemStopBehavior.StopEmitting);
         _isSpraying = false;
+
+        if (sprayAudio.isPlaying)
+            sprayAudio.Stop();
     }
 
 

@@ -13,6 +13,9 @@ public class GameManager : MonoBehaviour
     private bool gameDone = false;            
 
     [SerializeField] Collider2D playerCollider;
+    [SerializeField] CameraZoomIn cameraZoomIn;
+
+    public Collider2D LastLevelDoorway;
 
     private void Start()
     {
@@ -64,6 +67,26 @@ public class GameManager : MonoBehaviour
 
         if (currentLevelIndex >= levels.Length) return;
 
+        //To show player next level from the array of cameras
+        
+            cameraZoomIn.TransitionCamera();
+        
         StartLevel();
+    }
+
+    public void OnDoorwayTriggered(Collider2D triggeredCollider)
+    {
+        if (triggeredCollider == LastLevelDoorway)
+        {
+            Debug.Log("Last level doorway was triggered");
+            // Load end scene or do something special
+            StartCoroutine(Wait(2));
+        }
+    }
+
+    IEnumerator Wait(int delay)
+    {
+        yield return new WaitForSeconds(delay);
+        SceneManager.LoadScene(2);
     }
 }

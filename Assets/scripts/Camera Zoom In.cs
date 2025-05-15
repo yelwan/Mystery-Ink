@@ -2,23 +2,24 @@
 using Unity.Cinemachine;
 using UnityEngine;
 using System.Collections;
-using System.Collections.Generic;
-using Mono.Cecil.Cil;
 
 public class CameraZoomIn : MonoBehaviour
 {
-    [SerializeField] CinemachineCamera wideViewCam;
+    //[SerializeField] CinemachineCamera wideViewCam;
 
+    [SerializeField] CinemachineCamera [] Level_Cams;
     //no objects, so commented out object cam, and commented out Player cam to test which view is the
     //better experience for a maze game.
 
-    //[SerializeField] CinemachineCamera playerCam;
+    [SerializeField] CinemachineCamera playerCam;
     //[SerializeField] CinemachineCamera objectCam;
 
     [SerializeField] float delayBeforeZoom = 2f;
     [SerializeField] GameObject player;
     Coroutine coroutine = null;
     Transform transformP;
+
+    private int LevelIndex = 0;
 
     // Code review : 
     // For switching between vCams, a cleaner way is to simply call
@@ -28,31 +29,37 @@ public class CameraZoomIn : MonoBehaviour
     void Start()
     {
         transformP = player.GetComponent<Transform>();
-        ZoomToPlayer2();
+        //ZoomToPlayer2();
 
-        //wideViewCam.Priority = 20;
-        //playerCam.Priority = 10;
+        Level_Cams[1].Priority = 5;
+        playerCam.Priority = 1;
 
-        wideViewCam.Prioritize();
+        //wideViewCam.Prioritize();
 
         coroutine = StartCoroutine(ZoomInCoroutine(delayBeforeZoom));
- 
-        ZoomToPlayer2();
+
+        // ZoomToPlayer(); //Instead of ZoomToPlayer2(), for now
     }
 
-   /* void ZoomToPlayer()
+    void ZoomToPlayer()
     {
-        //wideViewCam.Priority = 10;
-        //playerCam.Priority = 20;
-        playerCam.Prioritize();
+        //Level_Cams[LevelIndex].Priority = 1;
+        //playerCam.Priority = 5;
+        //playerCam.Prioritize();
     }
-*/
+
 
     IEnumerator ZoomInCoroutine(float delay)
     {
        yield return new WaitForSeconds(delay);
 
         //playerCam.Prioritize();
+        for (int i = 0; i < Level_Cams.Length; i++)
+        {
+            Level_Cams[i].Priority = 1;
+        }
+
+        playerCam.Priority = 5;
         //ZoomToPlayer();
     }
 
@@ -73,6 +80,24 @@ public class CameraZoomIn : MonoBehaviour
         /*playerCam.Priority= 20;
         objectCam.Priority= 15;*/
         //playerCam.Prioritize();
-        wideViewCam.Prioritize();
+        //wideViewCam.Prioritize();
+    }
+
+    //Function to transition between cameras
+    public void TransitionCamera()
+    {
+        StartCoroutine(Transition_Delay(2));
+    }
+
+    IEnumerator Transition_Delay(int delay)
+    {
+        yield return new WaitForSeconds(delay);
+        LevelIndex++;
+        playerCam.Priority = 1;
+        Level_Cams[LevelIndex].Priority = 5;
+
+        yield return new WaitForSeconds(delay+3);
+        playerCam.Priority = 5;
+        Level_Cams[LevelIndex].Priority = 1;
     }
 }

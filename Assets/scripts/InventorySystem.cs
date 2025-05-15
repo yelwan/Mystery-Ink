@@ -9,6 +9,7 @@ public class InventorySystem : MonoBehaviour
     public bool AllFinished = false;
     [SerializeField] int TotalNumOfCans = 2;
 
+    [SerializeField] AudioSource collectCan;
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Q))
@@ -36,10 +37,12 @@ public class InventorySystem : MonoBehaviour
             if (equippedIndex == -1)
             {
                 EquipSprayCan(0);
+                collectCan.Play();
             }
             else
             {
                 sprayCan.gameObject.SetActive(false);
+                collectCan.Play();
             }
         }
     }

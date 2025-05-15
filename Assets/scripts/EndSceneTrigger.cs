@@ -5,33 +5,35 @@ using UnityEngine.SceneManagement;
 public class EndSceneTrigger : MonoBehaviour
 {
     [SerializeField] Collider2D player;
-    const int EndScene = 2;
+    //const int EndScene = 2;
     public moveDoor door;
-    public bool GameDone = false;
-    [SerializeField] GameManager gameManager; 
+    private int collisions_player = 0;
+    public bool LevelDone = false;
+    //public int Levels = 3;
+    [SerializeField] GameManager gameManager;
     // Code review : GameManager is referencing an end scene trigger. End scene trigger is referencing the game manager.
     // Your code is full of circular dependencies like this. Remove them by applying the observer pattern. 
     // One 
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision != player) return;
-
-        GameDone = true;
+        if (collision != player || collisions_player == 1) return;
+        collisions_player++;
+        //LevelDone = true;
+        gameManager.OnDoorwayTriggered(this.GetComponent<Collider2D>());
 
         // disabling player controller and door collider so player can enter the doorway
         StartCoroutine(WaitToProgress(2));
 
         if (null == door) return;
 
-        door.GetComponent<Collider2D>().enabled = false;
-        player.GetComponent<PlayerController>().enabled = false;
+        //door.GetComponent<Collider2D>().enabled = false;
+        //player.GetComponent<PlayerController>().enabled = false;
 
         //Door closing in front of Player
         StartCoroutine(WaitForDoor(1));
         door.CloseDoor();
         StartCoroutine(WaitForDoor(2));
-        
     }
 
     IEnumerator WaitForDoor(int time)

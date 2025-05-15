@@ -12,6 +12,8 @@ public class moveDoor : MonoBehaviour
     private Vector3 openPosition;
     private bool isOpen = false;
 
+    [SerializeField] AudioSource OPEN;
+    [SerializeField] AudioSource CLOSE;
     void Start()
     {
         if (door != null)
@@ -27,6 +29,7 @@ public class moveDoor : MonoBehaviour
         {
             StartCoroutine(MoveDoor(door.position, openPosition));
             isOpen = true;
+            OPEN.Play();
         }
     }
 
@@ -36,6 +39,7 @@ public class moveDoor : MonoBehaviour
         {
             StartCoroutine(MoveDoor(door.position, closedPosition));
             isOpen = false;
+            CLOSE.Play();
         }
     }
 

@@ -13,7 +13,9 @@ public class PlayerController : MonoBehaviour
     Vector2 move;
     Vector2 move2;
 
+    [SerializeField] AudioSource walkingAudio;
     
+
     void Update()
     {
         move = inputManager.GetMove();
@@ -23,6 +25,18 @@ public class PlayerController : MonoBehaviour
             moveDirection.Set(move.x, move.y);
             moveDirection.Normalize();
             inputManager.SetMove(move);
+
+            if (!walkingAudio.isPlaying)
+            {
+                walkingAudio.Play();
+            }
+        }
+        else
+        {
+            if (walkingAudio.isPlaying)
+            {
+                walkingAudio.Stop();
+            }
         }
 
     }
