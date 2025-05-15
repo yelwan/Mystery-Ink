@@ -8730,8 +8730,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1408952893}
-  door: {fileID: 345152067}
-  LevelDone: 0
   gameManager: {fileID: 1659975840}
 --- !u!61 &650131455
 BoxCollider2D:
@@ -12074,7 +12072,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2962fca6035227547831e60c89d54726, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timerUI: {fileID: 973709219}
 --- !u!114 &973709218
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12104,6 +12101,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b18ff82e90359e54c83f3efd7211689f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timer: {fileID: 973709217}
 --- !u!1 &977015635
 GameObject:
   m_ObjectHideFlags: 0
@@ -17226,8 +17224,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1408952893}
-  door: {fileID: 1271735193}
-  LevelDone: 0
   gameManager: {fileID: 1659975840}
 --- !u!1 &1408952892
 GameObject:
@@ -18594,8 +18590,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1408952893}
-  door: {fileID: 0}
-  LevelDone: 0
   gameManager: {fileID: 1659975840}
 --- !u!61 &1545781975
 BoxCollider2D:
@@ -26917,8 +26911,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1408952893}
-  door: {fileID: 2044195115}
-  LevelDone: 0
   gameManager: {fileID: 1659975840}
 --- !u!61 &2092076042
 BoxCollider2D:

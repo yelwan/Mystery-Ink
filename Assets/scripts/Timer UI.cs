@@ -11,7 +11,9 @@ public class TimerUI : MonoBehaviour
     private void Awake()
     {
         timer.OnStarted += onStarted;
-
+        timer.OnEnded += onEnded;
+        timer.OnTick += onTick;
+        timer.OnStopped += onStopped;
         var root = GetComponent<UIDocument>().rootVisualElement;
         countdownLabel = root.Q<Label>("Countdown");  
         labelElement = countdownLabel;
@@ -21,24 +23,32 @@ public class TimerUI : MonoBehaviour
     void OnDestroy()
     {
         timer.OnStarted -= onStarted;
-        
+        timer.OnEnded -= onEnded;
+        timer.OnTick -= onTick;
+        timer.OnStopped -= onStopped;
     }
 
     void onStarted(ITimer i_timer)
     {
-
-        
+        StartCoroutine(FadeInLabel());     
     }
 
-    public void UpdateTimerUI(int value)
+    void onEnded (ITimer i_timer)
+    {
+        StartCoroutine(FadeOutLabel());
+    }
+
+    void onStopped(ITimer i_timer)
+    {
+        StopAllCoroutines();
+    }
+
+    void onTick (ITimer i_timer, int value)
     {
         countdownLabel.text = value.ToString();
-    }
+    }  
 
-    public void TimerEnded()
-    {
-        StartCoroutine(FadeOutLabel()); 
-    }
+ 
 
     public IEnumerator FadeInLabel()
     {

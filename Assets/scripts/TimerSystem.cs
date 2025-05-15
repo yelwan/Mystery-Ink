@@ -11,20 +11,21 @@ public interface ITimer
 
     void Stop();
 
+    void End();
+
     bool IsRunning { get; }
 }
 
 
 public class TimerSystem : MonoBehaviour, ITimer
 {
-    [SerializeField] TimerUI timerUI;
 
     private int currentTimerValue;
-
     public Action<ITimer> OnStarted = null;
     public Action<ITimer> OnEnded = null;
-    public Action<ITimer> OnTick = null;
-
+    public Action<ITimer> OnStopped = null;
+    public Action<ITimer, int> OnTick = null;
+    public Action<int> OnSceneChange = null;
     void OnDestroy()
     {
         OnStarted = null;
@@ -39,8 +40,6 @@ public class TimerSystem : MonoBehaviour, ITimer
         StartCoroutine(Countdown());
 
         OnStarted?.Invoke(this);
-
-        StartCoroutine(timerUI.FadeInLabel());
     }
 
     // Code review : you better call this ! 
@@ -48,27 +47,31 @@ public class TimerSystem : MonoBehaviour, ITimer
     public void Stop()
     {
         // Call OnStopped
-        StopAllCoroutines();
+        OnStopped?.Invoke(this);
     }
 
-    public bool IsRunning => false; // return if coroutine reference is null;
+    public void End()
+    {
+        OnEnded?.Invoke(this);
+    }
+    public bool IsRunning => currentTimerValue > 0; // return if coroutine reference is null;
 
-    public float RemainingTime => 0f; // return timer remaining time
+    public float RemainingTime =>  RemainingTime; // return timer remaining time
 
     private IEnumerator Countdown()
     {
         while (currentTimerValue > 0)
         {
-            timerUI.UpdateTimerUI(currentTimerValue);
 
             // Call OnTick
+            OnTick?.Invoke(this, currentTimerValue);
             yield return new WaitForSeconds(1f);
             currentTimerValue--;
         }
-
-        timerUI.TimerEnded();
+        End();
+        
         yield return new WaitForSeconds(1f);
 
-        SceneManager.LoadScene(3);
+       OnSceneChange?.Invoke(3);
     }
 }

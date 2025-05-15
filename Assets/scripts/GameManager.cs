@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour
 
     public Collider2D LastLevelDoorway;
 
+   
     private void Start()
     {
         StartLevel();
@@ -46,6 +47,18 @@ public class GameManager : MonoBehaviour
         door.CloseDoor();
 
         StartCoroutine(WaitToProgress(2));
+    }
+
+
+    public void OnWin()
+    {
+        gameDone = true;
+        OnDoorwayTriggered(this.GetComponent<Collider2D>());
+        StartCoroutine(WaitToProgress(2));
+        if (null == door) return;
+        door.GetComponent<Collider2D>().enabled = false;
+        player.GetComponent<PlayerController>().enabled = false;
+        StartCoroutine(WaitForDoor(1));
     }
 
     private IEnumerator WaitToProgress(int time)
@@ -84,6 +97,12 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    IEnumerator WaitForDoor (int delay)
+    {
+        yield return new WaitForSeconds(delay);
+        door.CloseDoor();
+        StartCoroutine(WaitForDoor(1));
+    }
     IEnumerator Wait(int delay)
     {
         yield return new WaitForSeconds(delay);
