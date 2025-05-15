@@ -18,6 +18,12 @@ public class TimerUI : MonoBehaviour
         labelElement.style.opacity = 0f;  
     }
 
+    void OnDestroy()
+    {
+        timer.OnStarted -= onStarted;
+        
+    }
+
     void onStarted(ITimer i_timer)
     {
 
