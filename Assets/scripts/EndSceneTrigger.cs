@@ -18,22 +18,25 @@ public class EndSceneTrigger : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision != player || collisions_player == 1) return;
-        collisions_player++;
-        //LevelDone = true;
-        gameManager.OnDoorwayTriggered(this.GetComponent<Collider2D>());
 
-        // disabling player controller and door collider so player can enter the doorway
-        StartCoroutine(WaitToProgress(2));
+        gameManager.OnWin(door);
+        
+       /* collisions_player++;
+           //LevelDone = true;
+           gameManager.OnDoorwayTriggered(this.GetComponent<Collider2D>());
 
-        if (null == door) return;
+           // disabling player controller and door collider so player can enter the doorway
+           StartCoroutine(WaitToProgress(2));
 
-        //door.GetComponent<Collider2D>().enabled = false;
-        //player.GetComponent<PlayerController>().enabled = false;
+           if (null == door) return;
 
-        //Door closing in front of Player
-        StartCoroutine(WaitForDoor(1));
-        door.CloseDoor();
-        StartCoroutine(WaitForDoor(2));
+           //door.GetComponent<Collider2D>().enabled = false;
+           //player.GetComponent<PlayerController>().enabled = false;
+
+           //Door closing in front of Player
+           StartCoroutine(WaitForDoor(1));
+           door.CloseDoor();
+           StartCoroutine(WaitForDoor(2)); */
     }
 
     IEnumerator WaitForDoor(int time)

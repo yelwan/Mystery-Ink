@@ -4,20 +4,29 @@ using UnityEngine.UIElements;
 
 public class TimerUI : MonoBehaviour
 {
+    [SerializeField] TimerSystem timer = null;
     [SerializeField] Label countdownLabel;  
     private VisualElement labelElement;
 
     private void Awake()
     {
+        timer.OnStarted += onStarted;
+
         var root = GetComponent<UIDocument>().rootVisualElement;
         countdownLabel = root.Q<Label>("Countdown");  
         labelElement = countdownLabel;
         labelElement.style.opacity = 0f;  
     }
 
+    void onStarted(ITimer i_timer)
+    {
+
+        
+    }
+
     public void UpdateTimerUI(int value)
     {
-        countdownLabel.text = value.ToString(); 
+        countdownLabel.text = value.ToString();
     }
 
     public void TimerEnded()

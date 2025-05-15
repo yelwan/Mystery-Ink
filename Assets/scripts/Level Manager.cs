@@ -20,14 +20,14 @@ public class Level : MonoBehaviour
     private void TeleportPlayer(GameObject player)
     {
         //player.transform.position = playerSpawnPoint.position;
-        StartCoroutine(Wait(3));
-        player.GetComponent<PlayerController>().enabled = true;
+        StartCoroutine(WaitAndEnablePlayer(3, player.GetComponent<PlayerController>()));
     }
 
 
-    IEnumerator Wait(int timer)
+    IEnumerator WaitAndEnablePlayer(int timer, PlayerController i_player)
     {
         yield return new WaitForSeconds(timer);
+        i_player.enabled = true;
     }
 
    
