@@ -14,6 +14,15 @@ public class InputManager : MonoBehaviour
     Vector2 finalPosition;
     float ePressed = 0.0f;
 
+    public void OnEnable()
+    {
+        MoveAction?.Enable();
+    }
+
+    public void OnDisable()
+    {
+        MoveAction?.Disable();
+    }
     void Start()
     {
         E.Enable();

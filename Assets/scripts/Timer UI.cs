@@ -14,9 +14,8 @@ public class TimerUI : MonoBehaviour
         timer.OnEnded += onEnded;
         timer.OnTick += onTick;
         timer.OnStopped += onStopped;
-        var root = GetComponent<UIDocument>().rootVisualElement;
-        countdownLabel = root.Q<Label>("Countdown");  
-        labelElement = countdownLabel;
+        UIDocument root = GetComponent<UIDocument>();
+        labelElement = root.rootVisualElement.Q<VisualElement>("HealthBar");
         labelElement.style.opacity = 0f;  
     }
 
@@ -45,10 +44,11 @@ public class TimerUI : MonoBehaviour
 
     void onTick (ITimer i_timer, int value)
     {
-        countdownLabel.text = value.ToString();
-    }  
+        float progress = (float)value / 60.0f;
+        labelElement.style.width = Length.Percent(100 * progress);
+    }
 
- 
+
 
     public IEnumerator FadeInLabel()
     {

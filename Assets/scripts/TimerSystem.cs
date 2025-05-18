@@ -25,7 +25,7 @@ public class TimerSystem : MonoBehaviour, ITimer
     public Action<ITimer> OnEnded = null;
     public Action<ITimer> OnStopped = null;
     public Action<ITimer, int> OnTick = null;
-    public Action<int> OnSceneChange = null;
+
     void OnDestroy()
     {
         OnStarted = null;
@@ -72,6 +72,6 @@ public class TimerSystem : MonoBehaviour, ITimer
         
         yield return new WaitForSeconds(1f);
 
-       OnSceneChange?.Invoke(3);
+
     }
 }

@@ -1,0 +1,8 @@
+<engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <engine:VisualElement name="HealthBarBackground" style="flex-grow: 0; background-image: url(&quot;project://database/Assets/Health%20Bra%20Container.png?fileID=2800000&amp;guid=c36f4ab6f6522d44babb44196b8f327d&amp;type=3#Health Bra Container&quot;); width: 166px; height: 98px; -unity-background-scale-mode: scale-to-fit;">
+        <engine:VisualElement name="HealthBarContainer" enabled="false" style="flex-grow: 1; position: absolute; top: 18px; left: 21px; right: 29px; bottom: 25px;">
+            <engine:VisualElement name="HealthBar" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/Health%20Bar.png?fileID=-5576685416563272651&amp;guid=b035aafe22b734b41b4fcd2dbba07cf4&amp;type=3#Health Bar_0&quot;); height: 24px; width: 88px; position: absolute; -unity-background-image-tint-color: rgb(29, 0, 255); top: 16px; left: 48px; background-position-x: left 0; background-position-y: top 0;" />
+        </engine:VisualElement>
+    </engine:VisualElement>
+    <engine:VisualElement name="CharacterPortrait" style="flex-grow: 1; background-image: none; height: 27px; width: 48px; background-size: 75% 40%; -unity-background-scale-mode: scale-to-fit; background-position-x: left 0; align-items: auto; justify-content: flex-end; position: absolute; top: 34px; left: 45px;" />
+</engine:UXML>

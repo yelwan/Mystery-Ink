@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -17,11 +18,13 @@ public class GameManager : MonoBehaviour
 
     public Collider2D LastLevelDoorway;
 
-   
+    public Action<int> OnSceneChange = null;
+
     private void Start()
     {
         StartLevel();
     }
+
 
     private void Update()
     {
@@ -74,7 +77,7 @@ public class GameManager : MonoBehaviour
 
         if (currentLevelIndex == 4)
         {
-            SceneManager.LoadScene(2); 
+            SceneManager.LoadScene(2);
             return;
         }
 
@@ -101,11 +104,11 @@ public class GameManager : MonoBehaviour
     {
         yield return new WaitForSeconds(delay);
         door.CloseDoor();
-        StartCoroutine(WaitForDoor(1));
+       StartCoroutine(WaitForDoor(1));
     }
     IEnumerator Wait(int delay)
     {
         yield return new WaitForSeconds(delay);
-        SceneManager.LoadScene(2);
+        SceneManager.LoadScene(3);
     }
 }

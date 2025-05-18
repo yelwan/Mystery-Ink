@@ -1,14 +1,23 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.Collections.Generic;
 
-public class InventorySystem : MonoBehaviour
+public interface IInventoryObserver
+{
+    public void OnItemEquipped(GameObject item);
+    public void OnItemUnequipped(GameObject item);
+}
+
+public class InventorySystem : MonoBehaviour, IInventoryObserver
 {
     public List<GameObject> collectedSprayCans = new List<GameObject>();
     private int equippedIndex = -1;
     public bool AllFinished = false;
     [SerializeField] int TotalNumOfCans = 2;
-
+    public Action<IInventoryObserver, GameObject> OnStarted = null;
+    public Action<IInventoryObserver, GameObject> OnEnded = null;
     [SerializeField] AudioSource collectCan;
     void Update()
     {
@@ -27,13 +36,22 @@ public class InventorySystem : MonoBehaviour
         }
     }
 
+    public void OnItemEquipped(GameObject item)
+    {
+        OnStarted?.Invoke(this,item);
+    }
+
+    public void OnItemUnequipped(GameObject item)
+    {
+        OnEnded?.Invoke(this, item);
+    }
     public void CollectSprayCan(CollectSpraycan sprayCan)
     {
         if (!collectedSprayCans.Contains(sprayCan.gameObject))
         {
             collectedSprayCans.Add(sprayCan.gameObject);
-            sprayCan.collected = true; 
-
+            sprayCan.collected = true;
+            OnItemEquipped(sprayCan.gameObject);
             if (equippedIndex == -1)
             {
                 EquipSprayCan(0);
@@ -52,6 +70,7 @@ public class InventorySystem : MonoBehaviour
         if (collectedSprayCans.Count == 0) return;
 
         equippedIndex = (equippedIndex + 1) % collectedSprayCans.Count;
+        OnItemUnequipped(collectedSprayCans[equippedIndex].gameObject);
         EquipSprayCan(equippedIndex);
     }
 
@@ -63,6 +82,7 @@ public class InventorySystem : MonoBehaviour
         {
             collectedSprayCans[i].SetActive(i == equippedIndex);
         }
+        OnItemEquipped(collectedSprayCans[equippedIndex].gameObject);
     }
 
     private bool IsAllFinished()
