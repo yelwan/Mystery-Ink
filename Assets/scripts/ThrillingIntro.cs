@@ -22,9 +22,13 @@ public  class ThrillingIntro : MonoBehaviour
     [SerializeField] MaskManager maskManager;
     private void Awake()
     {
+        if(door != null)
         door.GetComponent<Collider2D>().enabled = false;
+        if(inputManager != null)
         inputManager.enabled = false;
+        if(door != null)
         door.CloseDoorStart();
+        if(inputManager != null)
         inputManager.enabled = true;
         transform.SetParent(null);
         DontDestroyOnLoad(gameObject);
@@ -48,15 +52,15 @@ public  class ThrillingIntro : MonoBehaviour
 
 
          //Fade in: Title, Chapter, Tagline
-       // yield return StartCoroutine(FadeTextIn(titleText));
-       //yield return new WaitForSeconds(betweenDelay);
-       // yield return StartCoroutine(FadeTextIn(chapterText));
-       // yield return new WaitForSeconds(betweenDelay);
-       //yield return StartCoroutine(FadeTextIn(taglineText));
-       // yield return new WaitForSeconds(flickerStartDelay);
+       yield return StartCoroutine(FadeTextIn(titleText));
+       yield return new WaitForSeconds(betweenDelay);
+       yield return StartCoroutine(FadeTextIn(chapterText));
+       yield return new WaitForSeconds(betweenDelay);
+       yield return StartCoroutine(FadeTextIn(taglineText));
+       yield return new WaitForSeconds(flickerStartDelay);
 
         // Start flickering "Redirecting..."
-       // yield return StartCoroutine(FlickerRedirecting(redirectingText));
+       yield return StartCoroutine(FlickerRedirecting(redirectingText));
 
         // Transition to next scene after short delay
         yield return new WaitForSeconds(1.5f);
