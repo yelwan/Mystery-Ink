@@ -49,11 +49,9 @@ public  class ThrillingIntro : MonoBehaviour
             ambientLoop.Play(); // Looping ambient sound (wind, hum, etc.)
         }
 
-
-
          //Fade in: Title, Chapter, Tagline
-       yield return StartCoroutine(FadeTextIn(titleText));
-       yield return new WaitForSeconds(betweenDelay);
+       //yield return StartCoroutine(FadeTextIn(titleText));
+       //yield return new WaitForSeconds(betweenDelay);
        yield return StartCoroutine(FadeTextIn(chapterText));
        yield return new WaitForSeconds(betweenDelay);
        yield return StartCoroutine(FadeTextIn(taglineText));
