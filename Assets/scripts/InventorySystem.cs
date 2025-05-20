@@ -21,7 +21,7 @@ public class InventorySystem : MonoBehaviour, IInventoryObserver
     [SerializeField] AudioSource collectCan;
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Q))
+        if (Input.GetKeyDown(KeyCode.Q) && collectedSprayCans.Count > 1)
         {
             CycleSprayCan();
         }
@@ -64,13 +64,12 @@ public class InventorySystem : MonoBehaviour, IInventoryObserver
             }
         }
     }
-
+  
     private void CycleSprayCan()
     {
         if (collectedSprayCans.Count == 0) return;
 
         equippedIndex = (equippedIndex + 1) % collectedSprayCans.Count;
-        OnItemUnequipped(collectedSprayCans[equippedIndex].gameObject);
         EquipSprayCan(equippedIndex);
     }
 

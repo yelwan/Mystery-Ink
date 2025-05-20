@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-
+using System;
 public enum GameColor
 {
     Red,
@@ -12,15 +12,18 @@ public enum GameColor
     Black,
     Unknown
 }
-
-public class SprayController : MonoBehaviour
+public interface IISprayAmount
+{
+    public void SetAmount(float amount);
+}
+public class SprayController : MonoBehaviour, IISprayAmount
 {
     [Header("Dependencies")]
-    [SerializeField]  CollectSpraycan _spraycan;
+    [SerializeField] CollectSpraycan _spraycan;
     [SerializeField] InputManager _inputManager;
-    [SerializeField]  PlayerController _playerInputManager;
-    [SerializeField]  MaskManager _maskManager;
-    [SerializeField]  ParticleSystem _sprayParticles;
+    [SerializeField] PlayerController _playerInputManager;
+    [SerializeField] MaskManager _maskManager;
+    [SerializeField] ParticleSystem _sprayParticles;
     [SerializeField] List<ParticleCollisionEvent> collisionEvents;
     [Header("Settings")]
 
@@ -31,7 +34,9 @@ public class SprayController : MonoBehaviour
     private bool _isSpraying = false;
 
     [SerializeField] AudioSource sprayAudio;
+    float amount = 0.0f;
 
+    public Action<IISprayAmount, float> SetAmounts = null;
     private void Awake()
     {
         collisionEvents = new List<ParticleCollisionEvent>();
@@ -53,7 +58,8 @@ public class SprayController : MonoBehaviour
                 if (sprayTimeAccumulator >= timePerUnit)
                 {
                     sprayTimeAccumulator -= timePerUnit;
-                    _spraycan.amount--;
+                   _spraycan.amount--;
+                    SetAmount(_spraycan.amount);
                     Debug.Log("Amount is " + _spraycan.amount);
                     if (_spraycan.amount <= 0)
                     {
@@ -109,6 +115,10 @@ public class SprayController : MonoBehaviour
             sprayAudio.Stop();
     }
 
+    public void SetAmount(float amount)
+    {
+        SetAmounts?.Invoke(this, amount);
+    }
 
     private void UpdateSprayDirection()
     {
@@ -135,6 +145,12 @@ public class SprayController : MonoBehaviour
         if (c.Equals((Color32)Color.black)) return GameColor.Black;
 
         return GameColor.Unknown;
+    }
+    public void UpdateCurrentSprayCan(CollectSpraycan newCan)
+    {
+        _spraycan = newCan;
+        amount = Mathf.Clamp(_spraycan.amount, 0f, 4f); 
+        SetAmount(amount);
     }
 
 }

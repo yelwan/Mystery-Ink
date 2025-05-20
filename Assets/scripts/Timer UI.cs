@@ -6,7 +6,7 @@ public class TimerUI : MonoBehaviour
 {
     [SerializeField] TimerSystem timer = null;
     [SerializeField] Label countdownLabel;  
-    private VisualElement labelElement;
+    private Label labelElement;
 
     private void Awake()
     {
@@ -14,8 +14,8 @@ public class TimerUI : MonoBehaviour
         timer.OnEnded += onEnded;
         timer.OnTick += onTick;
         timer.OnStopped += onStopped;
-        UIDocument root = GetComponent<UIDocument>();
-        labelElement = root.rootVisualElement.Q<VisualElement>("HealthBar");
+        var root = GetComponent<UIDocument>().rootVisualElement;
+        labelElement = root.Q<Label>("Countdown");
         labelElement.style.opacity = 0f;  
     }
 
@@ -44,8 +44,7 @@ public class TimerUI : MonoBehaviour
 
     void onTick (ITimer i_timer, int value)
     {
-        float progress = (float)value / 60.0f;
-        labelElement.style.width = Length.Percent(100 * progress);
+        labelElement.text = value.ToString();
     }
 
 
