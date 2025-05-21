@@ -33,7 +33,7 @@ public class TimerSystem : MonoBehaviour, ITimer
         OnTick = null;
     }
 
-    // Code review : cache timer coroutine reference (this tells us if timr is running already)
+    // Code review : cache timer coroutine reference (this tells us if timer is running already)
     public void StartTimer(float i_timer)
     {
         currentTimerValue = (int)i_timer;
@@ -48,11 +48,15 @@ public class TimerSystem : MonoBehaviour, ITimer
     {
         // Call OnStopped
         OnStopped?.Invoke(this);
+        StopAllCoroutines();
     }
 
     public void End()
     {
         OnEnded?.Invoke(this);
+        StopAllCoroutines();
+        Debug.Log("Loaded lose screen since timer ended, and player didn't finish level");
+        SceneManager.LoadScene(3);
     }
     public bool IsRunning => currentTimerValue > 0; // return if coroutine reference is null;
 
@@ -71,7 +75,5 @@ public class TimerSystem : MonoBehaviour, ITimer
         End();
         
         yield return new WaitForSeconds(1f);
-
-
     }
 }

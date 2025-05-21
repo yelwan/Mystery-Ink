@@ -60,7 +60,8 @@ public class GameManager : MonoBehaviour
         StartCoroutine(WaitToProgress(2));
         if (null == door) return;
         door.GetComponent<Collider2D>().enabled = false;
-        player.GetComponent<PlayerController>().enabled = false;
+        //player.GetComponent<PlayerController>().enabled = false;
+        timerSystem.Stop();
         StartCoroutine(WaitForDoor(1));
     }
 
@@ -85,7 +86,7 @@ public class GameManager : MonoBehaviour
 
         //To show player next level from the array of cameras
         
-            cameraZoomIn.TransitionCamera();
+        cameraZoomIn.TransitionCamera();
         
         StartLevel();
     }

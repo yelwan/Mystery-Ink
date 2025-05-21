@@ -20,6 +20,8 @@ public class InventorySystem : MonoBehaviour, IInventoryObserver
     public Action<IInventoryObserver, GameObject> OnStarted = null;
     public Action<IInventoryObserver, GameObject> OnEnded = null;
     [SerializeField] AudioSource collectCan;
+    public string inkColor;
+
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Q) && collectedSprayCans.Count > 1)
@@ -27,14 +29,14 @@ public class InventorySystem : MonoBehaviour, IInventoryObserver
             CycleSprayCan();
         }
 
-        if (collectedSprayCans.Count > 0)
+        /*if (collectedSprayCans.Count > 0)
         {
             AllFinished = IsAllFinished();
             if (AllFinished)
             {
                 SceneManager.LoadScene(3);
             }
-        }
+        }*/
     }
 
     public void OnItemEquipped(GameObject item)
@@ -44,6 +46,7 @@ public class InventorySystem : MonoBehaviour, IInventoryObserver
 
     public GameObject GetEquippedSprayCan()
     {
+        //inkColor = collectedSprayCans[equippedIndex].GetComponent<CollectSpraycan>().colorName;
         return collectedSprayCans[equippedIndex];
     }
     public void OnItemUnequipped(GameObject item)
@@ -101,7 +104,7 @@ public class InventorySystem : MonoBehaviour, IInventoryObserver
                     return false;
                 }
             }
-            return true;
+            return false;
         }
         return false;
     }

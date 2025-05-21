@@ -24,10 +24,8 @@ public class SprayParticles : MonoBehaviour
             _poolingSystem.CreatedProjectilePublic(hit);
 
             if (other.GetComponent<moveDoor>()) return;
-            other.GetComponent<SpriteRenderer>().color = Color.white;
+           // other.GetComponent<SpriteRenderer>().color = Color.white;
         }
     }
-
-   
 
 }

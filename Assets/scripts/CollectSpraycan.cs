@@ -35,7 +35,7 @@ public class CollectSpraycan : MonoBehaviour
 
         if (collected)
         {
-            Vector2 offset = new Vector2(0.9f, 1.0f); // Adjust these values for desired offset
+            Vector2 offset = new Vector2(0.5f, 1.0f); // Adjust these values for desired offset //0.9 for x
             transform.position = (Vector2)player.transform.position + offset;
         }
     }
