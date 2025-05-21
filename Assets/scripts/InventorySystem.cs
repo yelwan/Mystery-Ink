@@ -12,6 +12,7 @@ public interface IInventoryObserver
 
 public class InventorySystem : MonoBehaviour, IInventoryObserver
 {
+    public SprayController CurrentSprayController { get; private set; }
     public List<GameObject> collectedSprayCans = new List<GameObject>();
     private int equippedIndex = -1;
     public bool AllFinished = false;
@@ -41,6 +42,10 @@ public class InventorySystem : MonoBehaviour, IInventoryObserver
         OnStarted?.Invoke(this,item);
     }
 
+    public GameObject GetEquippedSprayCan()
+    {
+        return collectedSprayCans[equippedIndex];
+    }
     public void OnItemUnequipped(GameObject item)
     {
         OnEnded?.Invoke(this, item);
@@ -81,6 +86,7 @@ public class InventorySystem : MonoBehaviour, IInventoryObserver
         {
             collectedSprayCans[i].SetActive(i == equippedIndex);
         }
+        CurrentSprayController = collectedSprayCans[equippedIndex].GetComponentInChildren<SprayController>();
         OnItemEquipped(collectedSprayCans[equippedIndex].gameObject);
     }
 

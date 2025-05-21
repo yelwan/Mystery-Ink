@@ -12,7 +12,7 @@ public class PlayerController : MonoBehaviour
     Vector2 moveDirection;
     Vector2 move;
     Vector2 move2;
-
+    [SerializeField] Animator animator;
     [SerializeField] AudioSource walkingAudio;
     
 
@@ -38,7 +38,9 @@ public class PlayerController : MonoBehaviour
                 walkingAudio.Stop();
             }
         }
-
+        animator.SetFloat("MoveX", moveDirection.x);
+        animator.SetFloat("MoveY", moveDirection.y);
+        animator.SetFloat("Speed", move.magnitude);
     }
     void FixedUpdate()
     {
