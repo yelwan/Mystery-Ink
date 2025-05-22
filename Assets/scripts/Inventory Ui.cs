@@ -109,9 +109,9 @@ public class InventoryUi : MonoBehaviour
         CollectSpraycan can = controller.GetComponentInParent<CollectSpraycan>();
         if (can == null || !can.isEquipped) return;
 
-        //can.amount = amount;
+        can.amount = amount;
 
-        float progress = amount / 5f;
+        float progress = ++amount / 5f;
         healthBar.style.width = Length.Percent((100 * progress) );
     }
 
