@@ -28,6 +28,7 @@ public class CollectSpraycan : MonoBehaviour
 
     void Update()
     {
+        if (player == null) return;
         if (!collected && Vector2.Distance(transform.position, player.transform.position) <= collectDistance)
         {
             Collect();
