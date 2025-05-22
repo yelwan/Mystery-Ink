@@ -28,7 +28,7 @@ public class SprayController : MonoBehaviour, IISprayAmount
     [Header("Settings")]
 
     private float sprayTimeAccumulator = 0f;
-    private const float timePerUnit = 3f; // 3 seconds of spray = 1 unit
+    private const float timePerUnit = 6f; // 3 seconds of spray = 1 unit
 
 
     private bool _isSpraying = false;

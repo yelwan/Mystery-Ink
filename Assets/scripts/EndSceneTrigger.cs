@@ -8,6 +8,7 @@ public class EndSceneTrigger : MonoBehaviour
     private int collisions_player = 0;
     [SerializeField] GameManager gameManager;
     [SerializeField] bool done = false;
+    [SerializeField] moveDoor door;
     // Code review : GameManager is referencing an end scene trigger. End scene trigger is referencing the game manager.
     // Your code is full of circular dependencies like this. Remove them by applying the observer pattern. 
     // One 
@@ -16,6 +17,8 @@ public class EndSceneTrigger : MonoBehaviour
     {
         if (collision != player || done == true) return;
         done = true;
+        if (door != null) { door.CloseDoor(); }
         gameManager.OnWin();
+        
     }
 }

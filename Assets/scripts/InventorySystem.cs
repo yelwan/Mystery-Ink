@@ -88,7 +88,15 @@ public class InventorySystem : MonoBehaviour, IInventoryObserver
         for (int i = 0; i < collectedSprayCans.Count; i++)
         {
             collectedSprayCans[i].SetActive(i == equippedIndex);
+            /////////////////////////////////////////////////////////////////////////////////
+            if(i == equippedIndex)
+                collectedSprayCans[i].GetComponent<CollectSpraycan>().isEquipped = true;
+            else
+                collectedSprayCans[i].GetComponent<CollectSpraycan>().isEquipped = false;
+            /////////////////////////////////////////////////////////////////////////////////
+
         }
+
         CurrentSprayController = collectedSprayCans[equippedIndex].GetComponentInChildren<SprayController>();
         OnItemEquipped(collectedSprayCans[equippedIndex].gameObject);
     }

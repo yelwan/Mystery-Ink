@@ -35,7 +35,7 @@ public class CollectSpraycan : MonoBehaviour
 
         if (collected)
         {
-            Vector2 offset = new Vector2(0.5f, 1.0f); // Adjust these values for desired offset //0.9 for x
+            Vector2 offset = new Vector2(1.2f, -0.7f); 
             transform.position = (Vector2)player.transform.position + offset;
         }
     }
@@ -45,7 +45,7 @@ public class CollectSpraycan : MonoBehaviour
         if (collected) return; // Prevent duplicate collection
 
         collected = true;
-        numberOfCans++; // 🔹 Increment before disabling
+        numberOfCans++; // Increment before disabling
 
         if (inventorySystem != null)
         {

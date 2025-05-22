@@ -12,6 +12,12 @@ public class InventoryUi : MonoBehaviour
     [SerializeField] private Sprite blueSprite;
     [SerializeField] private Sprite yellowSprite;
 
+    [SerializeField] private CollectSpraycan redCan;
+    [SerializeField] private CollectSpraycan blueCan;
+    [SerializeField] private CollectSpraycan redCan2;
+    [SerializeField] private CollectSpraycan yellowCan;
+
+
     [SerializeField] InventorySystem inventorySystem = null;
     [SerializeField] SprayController sprayController = null;
     private VisualElement labelElement;
@@ -60,22 +66,36 @@ public class InventoryUi : MonoBehaviour
         {
             Debug.LogWarning("Selected sprite is null!");
         }*/
+
+        if (redCan.isEquipped || redCan2.isEquipped)
+        {
+            labelElement.style.backgroundImage = new StyleBackground(redSprite);
+        }
+        else if (blueCan.isEquipped)
+        {
+            labelElement.style.backgroundImage = new StyleBackground(blueSprite);
+        }
+        else if (yellowCan.isEquipped)
+        {
+            labelElement.style.backgroundImage = new StyleBackground(yellowSprite);
+        }
     }
 
     private void onEnded(IInventoryObserver i_Inventory, GameObject i_item)
     {
         myGameObject = null;
         labelElement.style.backgroundImage = null;
-        labelElement.style.backgroundColor = Color.clear;
+        //labelElement.style.backgroundColor = Color.clear;
     }
 
-    private void OnAmountUpdated(IISprayAmount i_SparyAmount, float i_Amount)
+    private void OnAmountUpdated(IISprayAmount i_SprayAmount, float i_Amount)
     {
         float clampedAmount = Mathf.Clamp(i_Amount, 0f, 5f);
         myGameObject.GetComponent<CollectSpraycan>().amount = clampedAmount;
 
         float progress = clampedAmount / 5f;
-        healthBar.style.width = Length.Percent(100 * progress);
+        healthBar.style.width = Length.Percent((100 * progress)+1);
+        //healthBar.style.width = Length.Percent(i_Amount/5);
     }
 
     private Sprite GetSpriteFromInk(string inkColor)

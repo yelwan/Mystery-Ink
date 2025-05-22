@@ -75,8 +75,8 @@ public class GameManager : MonoBehaviour
     public void NextLevel()
     {
         currentLevelIndex++;
-
-        if (currentLevelIndex == 4)
+        Debug.Log("Current level index" + currentLevelIndex);
+        if (currentLevelIndex == 3)
         {
             SceneManager.LoadScene(2);
             return;

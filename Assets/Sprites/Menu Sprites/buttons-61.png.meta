@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 3ff2c3d7771af9e4e8c529587a21780c
+guid: f4dd14adf4feb3b45b5c669234adc26b
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 9076725544998983448
-    second: container-spray-level-removebg-preview-removebg-preview_0
+      213: 524228429998337086
+    second: buttons-61_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -126,13 +126,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: container-spray-level-removebg-preview-removebg-preview_0
+      name: buttons-61_0
       rect:
         serializedVersion: 2
-        x: 13
-        y: 14
-        width: 329
-        height: 113
+        x: 40
+        y: 158
+        width: 1008
+        height: 440
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -141,8 +141,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 817d069eac107fd70800000000000000
-      internalID: 9076725544998983448
+      spriteID: e3c2637cafe664700800000000000000
+      internalID: 524228429998337086
       vertices: []
       indices: 
       edges: []
@@ -161,7 +161,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      container-spray-level-removebg-preview-removebg-preview_0: 9076725544998983448
+      buttons-61_0: 524228429998337086
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
