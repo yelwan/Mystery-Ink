@@ -41,7 +41,7 @@ public class InventorySystem : MonoBehaviour, IInventoryObserver
 
     public void OnItemEquipped(GameObject item)
     {
-        OnStarted?.Invoke(this,item);
+        OnStarted?.Invoke(this, item);
     }
 
     public GameObject GetEquippedSprayCan()

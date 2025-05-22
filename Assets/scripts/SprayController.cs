@@ -28,13 +28,13 @@ public class SprayController : MonoBehaviour, IISprayAmount
     [Header("Settings")]
 
     private float sprayTimeAccumulator = 0f;
-    private const float timePerUnit = 6f; // 3 seconds of spray = 1 unit
+    private const float timePerUnit = 4f; // 3 seconds of spray = 1 unit
 
 
     private bool _isSpraying = false;
 
     [SerializeField] AudioSource sprayAudio;
-    float amount = 0.0f;
+    float amount = 5f;
 
     public Action<IISprayAmount, float> SetAmounts = null;
     private void Awake()
@@ -47,19 +47,19 @@ public class SprayController : MonoBehaviour, IISprayAmount
         if (!CanSpray()) return;
 
         HandleSprayInput();
-
+       
         if (_isSpraying)
         {
             // Only accumulate if spray amount > 0
             if (_spraycan.amount > 0)
             {
                 sprayTimeAccumulator += Time.deltaTime;
-
                 if (sprayTimeAccumulator >= timePerUnit)
                 {
                     sprayTimeAccumulator -= timePerUnit;
-                   _spraycan.amount--;
-                    SetAmount(_spraycan.amount);
+                    _spraycan.amount--;
+                    float clampedAmount = Mathf.Clamp(_spraycan.amount, 0f, 5f);
+                    SetAmount(clampedAmount);
                     Debug.Log("Amount is " + _spraycan.amount);
                     if (_spraycan.amount <= 0)
                     {
@@ -149,7 +149,7 @@ public class SprayController : MonoBehaviour, IISprayAmount
     public void UpdateCurrentSprayCan(CollectSpraycan newCan)
     {
         _spraycan = newCan;
-        amount = Mathf.Clamp(_spraycan.amount, 0f, 4f); 
+        amount = _spraycan.amount;
         SetAmount(amount);
     }
 

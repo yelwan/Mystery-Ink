@@ -56,6 +56,19 @@ public class InventoryUi : MonoBehaviour
     {
         myGameObject = i_item;
 
+        // Unsubscribe from previous sprayController
+        if (sprayController != null)
+        {
+            sprayController.SetAmounts -= OnAmountUpdated;
+        }
+
+        sprayController = i_item.GetComponentInChildren<SprayController>();
+
+        if (sprayController != null)
+        {
+            sprayController.SetAmounts += OnAmountUpdated;
+        }
+
         CollectSpraycan can = i_item.GetComponent<CollectSpraycan>();
         sprayController.UpdateCurrentSprayCan(can);
 
@@ -75,35 +88,33 @@ public class InventoryUi : MonoBehaviour
 
     private void onEnded(IInventoryObserver i_Inventory, GameObject i_item)
     {
+        // Unsubscribe from the current spray controller
+        if (sprayController != null)
+        {
+            sprayController.SetAmounts -= OnAmountUpdated;
+            sprayController = null;
+        }
+
         myGameObject = null;
         labelElement.style.backgroundImage = null;
     }
 
-    private void OnAmountUpdated(IISprayAmount i_SprayAmount, float i_Amount)
+
+    private void OnAmountUpdated(IISprayAmount sender, float amount)
     {
-        if (redCan.isEquipped)
-        {
-            myGameObject = redCan.GameObject();
-        }
-        else if (blueCan.isEquipped)
-        {
-            myGameObject = blueCan.GameObject();
-        }
-        else if (yellowCan.isEquipped)
-        {
-            myGameObject = yellowCan.GameObject();
-        }
-        else if(redCan2.isEquipped)
-        {
-            myGameObject = redCan2.GameObject();
-        }
+        SprayController controller = sender as SprayController;
 
-        float clampedAmount = Mathf.Clamp(i_Amount, 0f, 5f);
-        myGameObject.GetComponent<CollectSpraycan>().amount = clampedAmount;
+        if (controller != sprayController) return;
 
-        float progress = clampedAmount / 5f;
-        healthBar.style.width = Length.Percent((100 * progress) + 1);
+        CollectSpraycan can = controller.GetComponentInParent<CollectSpraycan>();
+        if (can == null || !can.isEquipped) return;
+
+        //can.amount = amount;
+
+        float progress = amount / 5f;
+        healthBar.style.width = Length.Percent((100 * progress) );
     }
+
 
     private Sprite GetSpriteFromInk(string inkColor)
     {
@@ -222,11 +233,14 @@ public class InventoryUi : MonoBehaviour
     
     private void OnAmountUpdated(IISprayAmount i_SparyAmount, float i_Amount)
     {
-        float clampedAmount = Mathf.Clamp(i_Amount, 0f, 5f); 
-        myGameObject.GetComponent<CollectSpraycan>().amount = clampedAmount;
+        CollectSpraycan can = i_SprayAmount as CollectSpraycan;
+    if (can == null) return;
 
-        float progress = clampedAmount / 5f;
-        healthBar.style.width = Length.Percent((100 * progress));
+    float clampedAmount = Mathf.Clamp(i_Amount, 0f, 5f);
+    can.amount = clampedAmount;
+
+    float progress = clampedAmount / 5f;
+    healthBar.style.width = Length.Percent((100 * progress) + 1);
 
     }
 }
