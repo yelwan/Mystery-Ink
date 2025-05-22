@@ -5,8 +5,9 @@ using UnityEngine.UIElements;
 public class TimerUI : MonoBehaviour
 {
     [SerializeField] TimerSystem timer = null;
-    [SerializeField] Label countdownLabel;  
+    [SerializeField] Label countdownLabel;
     private Label labelElement;
+    private VisualElement Instructions;
 
     private void Awake()
     {
@@ -16,7 +17,8 @@ public class TimerUI : MonoBehaviour
         timer.OnStopped += onStopped;
         var root = GetComponent<UIDocument>().rootVisualElement;
         labelElement = root.Q<Label>("Countdown");
-        labelElement.style.opacity = 0f;  
+        labelElement.style.opacity = 0f;
+
     }
 
     void OnDestroy()
@@ -46,8 +48,6 @@ public class TimerUI : MonoBehaviour
     {
         labelElement.text = value.ToString();
     }
-
-
 
     public IEnumerator FadeInLabel()
     {

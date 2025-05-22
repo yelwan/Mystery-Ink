@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Collections.Generic;
 using UnityEngine.UIElements;
+using Unity.VisualScripting;
 
 public class InventoryUi : MonoBehaviour
 {
@@ -17,12 +18,12 @@ public class InventoryUi : MonoBehaviour
     [SerializeField] private CollectSpraycan redCan2;
     [SerializeField] private CollectSpraycan yellowCan;
 
-
     [SerializeField] InventorySystem inventorySystem = null;
     [SerializeField] SprayController sprayController = null;
     private VisualElement labelElement;
     private VisualElement healthBar;
     public GameObject myGameObject = null;
+    private VisualElement Instructions;
 
     private void Awake()
     {
@@ -35,6 +36,10 @@ public class InventoryUi : MonoBehaviour
         healthBar = root.rootVisualElement.Q<VisualElement>("HealthBar");
 
         labelElement.transform.scale = new Vector3(5f, 5f, 5f);
+
+
+        Instructions = root.rootVisualElement.Q<VisualElement>("instructionsUI");
+
     }
 
     void OnDestroy()
@@ -54,19 +59,6 @@ public class InventoryUi : MonoBehaviour
         CollectSpraycan can = i_item.GetComponent<CollectSpraycan>();
         sprayController.UpdateCurrentSprayCan(can);
 
-        //Sprite selectedSprite = GetSpriteFromInk(inventorySystem.GetEquippedSprayCan().GetComponent<CollectSpraycan>().colorName.ToString());
-        //Debug.Log($"Selected sprite for color {inventorySystem.GetEquippedSprayCan().GetComponent<CollectSpraycan>().colorName}: {selectedSprite}");
-
-        /*if (selectedSprite != null)
-        {
-            //labelElement.style.backgroundColor = GetColorFromInk(inventorySystem.inkColor.ToString());
-            labelElement.style.backgroundImage = new StyleBackground(selectedSprite.texture);
-        }
-        else
-        {
-            Debug.LogWarning("Selected sprite is null!");
-        }*/
-
         if (redCan.isEquipped || redCan2.isEquipped)
         {
             labelElement.style.backgroundImage = new StyleBackground(redSprite);
@@ -85,17 +77,32 @@ public class InventoryUi : MonoBehaviour
     {
         myGameObject = null;
         labelElement.style.backgroundImage = null;
-        //labelElement.style.backgroundColor = Color.clear;
     }
 
     private void OnAmountUpdated(IISprayAmount i_SprayAmount, float i_Amount)
     {
+        if (redCan.isEquipped)
+        {
+            myGameObject = redCan.GameObject();
+        }
+        else if (blueCan.isEquipped)
+        {
+            myGameObject = blueCan.GameObject();
+        }
+        else if (yellowCan.isEquipped)
+        {
+            myGameObject = yellowCan.GameObject();
+        }
+        else if(redCan2.isEquipped)
+        {
+            myGameObject = redCan2.GameObject();
+        }
+
         float clampedAmount = Mathf.Clamp(i_Amount, 0f, 5f);
         myGameObject.GetComponent<CollectSpraycan>().amount = clampedAmount;
 
         float progress = clampedAmount / 5f;
-        healthBar.style.width = Length.Percent((100 * progress)+1);
-        //healthBar.style.width = Length.Percent(i_Amount/5);
+        healthBar.style.width = Length.Percent((100 * progress) + 1);
     }
 
     private Sprite GetSpriteFromInk(string inkColor)
@@ -127,6 +134,37 @@ public class InventoryUi : MonoBehaviour
             default:
                 return Color.white; // fallback color
         }
+    }
+
+    private void Start()
+    {
+        float delaySeconds = 6f;
+        float fadeDuration = 2f;
+        if (Instructions != null)
+        {
+            StartCoroutine(FadeOutAfterDelay(Instructions, delaySeconds, fadeDuration));
+        }
+        else
+        {
+            Debug.Log("Nothing to display!!");
+        }
+    }
+    IEnumerator FadeOutAfterDelay(VisualElement element, float delay, float duration)
+    {
+        yield return new WaitForSeconds(delay);
+
+        float elapsed = 0f;
+        float startOpacity = element.resolvedStyle.opacity;
+
+        while (elapsed < duration)
+        {
+            elapsed += Time.deltaTime;
+            float newOpacity = Mathf.Lerp(startOpacity, 0f, elapsed / duration);
+            element.style.opacity = newOpacity;
+            yield return null;
+        }
+
+        element.style.opacity = 0f;
     }
 }
 

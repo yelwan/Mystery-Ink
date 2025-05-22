@@ -4,7 +4,7 @@
             {
                 "type": "System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
                 "key": "buildOutputDirList",
-                "value": "{\"m_Value\":\"C:/Users/Basmala/Documents/Unity Builds/FinalBuild;C:/Users/Basmala/Documents/Unity Builds/Build5;C:/Users/Basmala/Documents/Unity Builds/Build3;C:/Users/Basmala/Documents/Unity Builds/Build 2- PreAlpha;;;;;;\"}"
+                "value": "{\"m_Value\":\"C:/Users/Basmala/Documents/Unity Builds/FinalBuild2;C:/Users/Basmala/Documents/Unity Builds/FinalBuild;C:/Users/Basmala/Documents/Unity Builds/Build5;C:/Users/Basmala/Documents/Unity Builds/Build3;C:/Users/Basmala/Documents/Unity Builds/Build 2- PreAlpha;;;;;\"}"
             },
             {
                 "type": "System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",

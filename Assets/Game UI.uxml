@@ -7,4 +7,5 @@
     <engine:VisualElement name="CharacterPortrait" style="flex-grow: 1; height: 33px; width: 28px; position: absolute; top: 17px; left: 33px; background-size: 20% 30%; background-image: none;">
         <engine:Image name="PortraitImage" style="width: 29px; height: 34px; -unity-background-scale-mode: scale-to-fit; -unity-background-image-tint-color: rgb(255, 255, 255); border-left-color: rgba(0, 0, 0, 0); border-right-color: rgba(0, 0, 0, 0); border-top-color: rgba(0, 0, 0, 0); border-bottom-color: rgba(0, 0, 0, 0); background-image: none; background-size: 50% 50%;" />
     </engine:VisualElement>
+    <engine:VisualElement name="instructionsUI" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/Sprites/Menu%20Sprites/instructions.png?fileID=-5175148029312991847&amp;guid=abfb897d767eed5428d1693b04453b36&amp;type=3#instructions_0&quot;); background-size: 100% 89%; width: 489px; height: 616px; position: absolute; top: 251px; left: 29px;" />
 </engine:UXML>
