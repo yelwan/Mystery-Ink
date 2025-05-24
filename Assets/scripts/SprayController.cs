@@ -82,6 +82,8 @@ public class SprayController : MonoBehaviour, IISprayAmount
 
     private void HandleSprayInput()
     {
+        if (null == _inputManager) return;
+
         if (_inputManager.GetEPressed())
         {
             StartSpraying();

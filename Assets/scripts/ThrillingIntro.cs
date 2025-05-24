@@ -31,7 +31,6 @@ public  class ThrillingIntro : MonoBehaviour
         if(inputManager != null)
         inputManager.enabled = true;
         transform.SetParent(null);
-        DontDestroyOnLoad(gameObject);
     }
     void Start()
     {
