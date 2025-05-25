@@ -149,7 +149,7 @@ public class InventoryUi : MonoBehaviour
 
     private void Start()
     {
-        float delaySeconds = 6f;
+        float delaySeconds = 12f;
         float fadeDuration = 2f;
         if (Instructions != null)
         {
